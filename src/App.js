@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 
-function App() {
+export default function App() {
+  const docs = [
+    { uri: require("./a.pdf") },
+    
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>elee</h1>
+      <DocViewer
+        pluginRenderers={DocViewerRenderers}
+        documents={docs}
+        config={{
+          header: {
+            disableHeader: false,
+            disableFileName: false,
+            retainURLParams: false
+          }
+        }}
+        style={{ height: 1000 }}
+      />
     </div>
   );
 }
-
-export default App;
