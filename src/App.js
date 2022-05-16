@@ -1,26 +1,21 @@
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
+import { Switch,Routes,BrowserRouter,Route, Router } from 'react-router-dom';
+import Rapport_template from './components/Front/Rapport_template.component';
+
 
 export default function App() {
-  const docs = [
-    { uri: require("./a.pdf") },
-    
-  ];
+ 
 
   return (
-    <div className="App">
-      <h1>elee</h1>
-      <DocViewer
-        pluginRenderers={DocViewerRenderers}
-        documents={docs}
-        config={{
-          header: {
-            disableHeader: false,
-            disableFileName: false,
-            retainURLParams: false
-          }
-        }}
-        style={{ height: 1000 }}
-      />
-    </div>
+   
+      
+      <div className="App">
+           
+           <Routes>
+                 <Route exact path='/Templates' element={< Rapport_template />}></Route>
+                
+          </Routes>
+          </div>
+
   );
 }
