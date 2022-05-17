@@ -18,7 +18,7 @@ export default class Rapport_template extends React.Component  {
       .then(res => {
        
         const _doc = [
-          { uri: require("D:/pfe/Front/mon-app/src/Templates Word_pdf/a.pdf") },
+          { uri: require("../../Templates Word_pdf/a.pdf") },
           
         ];
 
