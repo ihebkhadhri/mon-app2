@@ -20,6 +20,10 @@ export default class Rapport_template extends React.Component {
 
 
   componentDidMount() {
+if(sessionStorage.getItem("Token")==null)
+{
+  window.location.href="Authentification";
+}
 
     
 

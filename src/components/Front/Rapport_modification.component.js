@@ -16,6 +16,13 @@ state = {
   }
 
   componentDidMount() {
+
+    if(sessionStorage.getItem("Token")==null)
+    {
+      window.location.href="Authentification";
+    }
+
+
   let hrf=  window.location.href.split("/");
   let idi=hrf[hrf.length-1];
 
@@ -24,6 +31,9 @@ state = {
   
   })
 
+
+  
+ 
     
 
     
