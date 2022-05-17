@@ -21,6 +21,8 @@ export default class Rapport_template extends React.Component {
 
   componentDidMount() {
 
+    
+
     axios.get(`https://localhost:7103/Template/AllTemplatesByCategorie/`)
       .then(res => {
         console.log(res.data);
@@ -39,9 +41,12 @@ export default class Rapport_template extends React.Component {
           _docs.push(_doc);
         }
 
+        let hrf=  window.location.href.split("/");
+        let idi=hrf[hrf.length-1];
 
         this.setState({
-          docs: _docs
+          docs: _docs,
+          idintegration:idi
         }
         )
 
@@ -53,19 +58,22 @@ export default class Rapport_template extends React.Component {
 
   selectiontemplate(e) {
     e.preventDefault();
-    this.setState({idtemplate:e.id})
+   
+    this.setState({idtemplate:e.target.id})
   }
 
   onpasse(e) {
     e.preventDefault();
 
-    axios.get(`https://localhost:7103/Template/EcrireTemplate/`)
+    axios.get('https://localhost:7103/Integration/EcrireTemplate/'+this.state.idintegration+'/'+this.state.idtemplate)
     .then(res => { 
-
-
+     
+      console.log(res.data);
+      window.location.href = "/Rapport/"+this.state.idintegration;
     });
 
   }
+
 
   /* const docs = [
      { uri: require("../../../src/a.pdf") },
@@ -93,7 +101,7 @@ export default class Rapport_template extends React.Component {
                 }}
                 style={{ height: 500 }}
               />
-              <button onChange={this.selectiontemplate} id={doc[0].id} > Sélectionner</button>
+              <button onClick={this.selectiontemplate} id={doc[0].id} > Sélectionner</button>
             </div>
           )}
 

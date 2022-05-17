@@ -9,15 +9,32 @@ state = {
     docs: [
         { uri: require("../../Templates Word_pdf/a.pdf") },
         
-      ], integration:Object
+      ],
+      idintegration:0
+      ,integration:Object
 
   }
 
   componentDidMount() {
+  let hrf=  window.location.href.split("/");
+  let idi=hrf[hrf.length-1];
+
+  this.setState({
+    idintegration:idi
+  
+  })
+
     
-    axios.get(`https://localhost:7103/Integration/GetIntegration/6282b830f26a1f053db98c86`)
+
+    
+    axios.get(`https://localhost:7103/Integration/GetIntegration/`+idi)
       .then(res => { console.log(res.data);
-        this.setState({integration:res.data})
+        this.setState({integration:res.data,
+          docs: [
+            { uri: require("../../Templates Word_pdf/"+idi+".pdf") },
+            
+          ]
+        })
         
         
       })
