@@ -14,6 +14,10 @@ state = {
   }
 
   componentDidMount() {
+    if(sessionStorage.getItem("Token")==null)
+{
+  window.location.href="Authentification";
+}
     
     axios.get(`https://localhost:7103/Integration/GetIntegration/6282b830f26a1f053db98c86`)
       .then(res => { console.log(res.data);
