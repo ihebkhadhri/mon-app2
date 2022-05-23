@@ -9,6 +9,10 @@ export default class Categorie extends React.Component {
     this.saveFileSelected = this.saveFileSelected.bind(this);
     this.importFile = this.importFile.bind(this);
     
+    if(sessionStorage.getItem("Token")==null)
+{
+  window.location.href="/Authentification";
+}
 
   }
   
@@ -59,13 +63,29 @@ export default class Categorie extends React.Component {
   render() {
     return (
       <div>
+        <div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <div class="fadeIn first">
+      
+    </div>
+
+    <form>
          <input type="file" onChange={this.saveFileSelected} />
+         <br/>
         <select>
       { this.state.categories.map(categorie => <option>{categorie.libelle}</option>)}
     </select>
+    <br/>
     <input type="button" value="upload" onClick={this.importFile} />
 
-    </div>
+    </form>
+
+   
+
+</div>
+</div>
+</div>
       
     )
   }

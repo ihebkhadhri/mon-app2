@@ -5,6 +5,19 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 
 export default class Rapport_modification extends React.Component {
+
+  constructor(props) {
+    super(props);
+    
+
+    if(sessionStorage.getItem("Token")==null)
+    {
+      window.location.href="/Authentification";
+    }
+
+  }
+
+
 state = {
     docs: [
         { uri: require("../../Templates Word_pdf/a.pdf") },
@@ -17,10 +30,7 @@ state = {
 
   componentDidMount() {
 
-    if(sessionStorage.getItem("Token")==null)
-    {
-      window.location.href="Authentification";
-    }
+    
 
 
   let hrf=  window.location.href.split("/");
@@ -59,7 +69,7 @@ state = {
         
         <div className="row">
           
-        <div className="col-8">
+        <div className="col-5">
 
           <DocViewer
           pluginRenderers={DocViewerRenderers}
@@ -71,21 +81,20 @@ state = {
               retainURLParams: false
             }
           }}
-          style={{ height: 500 }}
+          style={{ height: 700 }}
         />
         
   </div>
           
-   <div className ="col-4">
+   <div className ="col-7 mt-5">
    <ul>
    
-   
+   <li> Mes Données </li>
     <li>{this.state.integration.nom} </li>
     <li>{this.state.integration.prenom} </li>
     <li>{this.state.integration.age} </li>
     <li>{this.state.integration.nationalite} </li>
-        
-    
+      
 </ul>
 
      

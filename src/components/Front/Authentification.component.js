@@ -2,6 +2,8 @@ import axios from 'axios';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { render } from '@testing-library/react';
+import './Authentification.component.css'; // Tell webpack that Button.js uses these styles
+
 
 export default class Authentification extends React.Component {
 
@@ -45,28 +47,42 @@ onSubmit(e) {
           console.log(res.data); 
         this.setState({ourtoken:res.data})
         sessionStorage.setItem("Token", res.data);
-        
+        document.getElementById('error').style.display="none";
+        window.location.href="/Categories";
+      })
+      .catch((error) => {
+        document.getElementById('error').style.display="block";
       })
   }
 
 
   render() {
       return(
-        <form >
-        <input required type="text" id="login" className="fadeIn second" name="login" placeholder="login" value={this.state.username}
+
+        <div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <div class="fadeIn first">
+      
+    </div>
+
+    <form>
+    <input required type="text" id="login" className="fadeIn second" name="login" placeholder="login" value={this.state.username}
         onChange={this.onChangeUsername} />
-
-        <p id="errorusername" style={{color: "red"}}> username invalide </p>
-
-
-        <input required type="text" value={this.state.password}
+<input required type="password" value={this.state.password}
         onChange={this.onChangePassword} id="password" className="fadeIn third" name="login" placeholder="password" />
+      <input type="button" onClick={this.onSubmit} className="fadeIn fourth" value="Log In" />
+      <p id='error'  style={{display:'none', color:'red'}}> Vérifier vos coordonnées</p>
+    </form>
+
+   
+
+  </div>
+</div>
+
+
+
         
-        <p id="errorpassword" style={{color: "red"}}> password invalide </p>
-       
-        <input type="button" onClick={this.onSubmit} className="fadeIn fourth" value="Log In" />
-      </form>
-  
       );
   }
 
