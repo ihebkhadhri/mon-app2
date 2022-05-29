@@ -42,7 +42,7 @@ export default class Categorie extends React.Component {
       const res =  axios.post("https://localhost:7103/Integration/AddIntegration", formData).then(res => { 
      
         console.log(res.data);
-        window.location.href = "/Templates/"+res.data.id;
+        window.location.href = "/Templates/"+res.data;
       });
     } catch (ex) {
       console.log(ex);
