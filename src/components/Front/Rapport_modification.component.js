@@ -50,9 +50,19 @@ state = {
     axios.get(`https://localhost:7103/Integration/GetIntegration/`+idi)
       .then(res => { console.log(res.data);
         this.setState({integration:res.data,
+          
+        })
+        
+        
+      })
+
+
+      axios.get(`https://localhost:7103/Integration/GetFinalPdf/`+idi)
+      .then(res => { console.log(res.data);
+        this.setState({
           docs: [
-            { uri: require("../../Templates Word_pdf/"+idi+".pdf") },
-            
+            {  uri: "data:application/pdf;base64, " + encodeURI(res.data)
+          }
           ]
         })
         

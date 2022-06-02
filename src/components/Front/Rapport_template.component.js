@@ -12,31 +12,42 @@ export default class Rapport_template extends React.Component {
     this.selectiontemplate = this.selectiontemplate.bind(this);
   }
 
+
   state = {
     docs: [],
     idtemplate: 0,
-    idintegration:'62554e665306a2fc8ae06791'
+    idintegration: '62554e665306a2fc8ae06791'
   }
 
 
   componentDidMount() {
-if(sessionStorage.getItem("Token")==null)
-{
-  window.location.href="/Authentification";
-}
 
-    
+    if (sessionStorage.getItem("Token") == null) {
+      window.location.href = "/Authentification";
+    }
 
-    axios.get(`https://localhost:7103/Template/AllTemplatesByCategorie/`)
-      .then(res => {
-        console.log(res.data);
-        const _docs = [];
-        for (let i = 0; i < res.data.length; i++) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://localhost:7103/Template/AllTemplatesByCategorie");
+
+
+    axios.get("https://localhost:7103/Template/AllTemplatesByCategorie")
+    .then(res => {
+       
+
+        let listtemplate = (res.data);
+        console.log(listtemplate);
+        let _docs = [];
+        for (let i = 0; i < listtemplate.length; i++) {
+
+          let _listemplateId=listtemplate[i].split("-*-")[0];
+          let _listemplateUrlFile=listtemplate[i].split("-*-")[1];
+          console.log(_listemplateId);
+          console.log(_listemplateUrlFile);
 
           let _doc = [
             {
-              uri: require("../../../src/Templates Word_pdf/" + res.data[i].nom + ".pdf"),
-              id: res.data[i].id
+              uri: "data:application/pdf;base64, " + encodeURI(_listemplateUrlFile),
+              id: _listemplateId
             },
 
           ];
@@ -45,36 +56,47 @@ if(sessionStorage.getItem("Token")==null)
           _docs.push(_doc);
         }
 
-        let hrf=  window.location.href.split("/");
-        let idi=hrf[hrf.length-1];
+
+
+        let hrf = window.location.href.split("/");
+        let idi = hrf[hrf.length - 1];
 
         this.setState({
           docs: _docs,
-          idintegration:idi
-        }
-        )
+          idintegration: idi
+        })
+
+        
+        
+
+      
+      
+      
+    })
+
+
+   
 
 
 
-      })
 
   }
 
   selectiontemplate(e) {
     e.preventDefault();
-   
-    this.setState({idtemplate:e.target.id})
+
+    this.setState({ idtemplate: e.target.id })
   }
 
   onpasse(e) {
     e.preventDefault();
 
-    axios.get('https://localhost:7103/Integration/EcrireTemplate/'+this.state.idintegration+'/'+this.state.idtemplate)
-    .then(res => { 
-     
-      console.log(res.data);
-      window.location.href = "/Rapport/"+this.state.idintegration;
-    });
+    axios.get('https://localhost:7103/Integration/EcrireTemplate/' + this.state.idintegration + '/' + this.state.idtemplate)
+      .then(res => {
+
+        console.log(res.data);
+        window.location.href = "/Rapport/" + this.state.idintegration;
+      });
 
   }
 
