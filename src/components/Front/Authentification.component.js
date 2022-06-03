@@ -46,8 +46,11 @@ onSubmit(e) {
       .then(res => {
           console.log(res.data); 
         this.setState({ourtoken:res.data})
-        sessionStorage.setItem("Token", res.data);
+        sessionStorage.setItem("Token", res.data.jwttoken);
         document.getElementById('error').style.display="none";
+        if(res.data.role=="Administrateur")
+        window.location.href="/AllTemplate";
+        else
         window.location.href="/Categories";
       })
       .catch((error) => {
@@ -59,10 +62,10 @@ onSubmit(e) {
   render() {
       return(
 
-        <div class="wrapper fadeInDown">
+        <div className="wrapper fadeInDown">
   <div id="formContent">
 
-    <div class="fadeIn first">
+    <div className="fadeIn first">
       
     </div>
 
