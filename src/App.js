@@ -1,14 +1,12 @@
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import { Switch, Routes, BrowserRouter, Route, Router } from 'react-router-dom';
-import Rapport_template from './components/Front/Rapport_template.component';
-import Categorie from './components/Front/Categorie';
-import Rapport_modification from "./components/Front/Rapport_modification.component";
-import Authentification from "./components/Front/Authentification.component";
-import AddTemplate from "./components/Back/AddTemplate.component";
-import AllTemplate from "./components/Back/AllTemplatte.component";
+
+import HeaderBack from "./components/NavBar/HeaderBack.component";
+import HeaderFront from "./components/NavBar/HeaderFront.component";
 
 export default function App() {
 
+      let role= sessionStorage.getItem("Role");
 
       return (
 
@@ -52,21 +50,11 @@ export default function App() {
                         </div>
                   </div>
 
-                 
+                { role!=undefined && role=="Administrateur"?
+                 <HeaderBack />:
+                 <HeaderFront />
 
-                  <Routes>
-                        <Route exact path='/Templates/:id' element={< Rapport_template />}></Route>
-
-                        <Route exact path='/Authentification' element={< Authentification />}></Route>
-                        <Route exact path='/Templates' element={< Rapport_template />}></Route>
-                        <Route exact path='/Categories' element={< Categorie />}></Route>
-                        <Route exact path='/Rapport/:id' element={< Rapport_modification />}></Route>
-
-
-                        <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>
-                        <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>
-
-                  </Routes>
+                } 
 
                  
             </div>
