@@ -11,7 +11,7 @@ export default class NavBarComponent extends React.Component {
     
       <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.html" className="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 className="m-0"><i className="fa fa-car text-primary2 me-2"></i>Drivin</h2>
+            <h2 className="m-0"><i className="fa fa-car text-primary2 me-2"></i>Corilus</h2>
         </a>
         <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
@@ -33,7 +33,8 @@ export default class NavBarComponent extends React.Component {
                 </div>
                 <a href="contact.html" className="nav-item nav-link">Contact</a>
             </div>
-            <a href="" className="btn btn-primary2 py-4 px-lg-5 d-none d-lg-block">Get Started<i className="fa fa-arrow-right ms-3"></i></a>
+            
+            <a href="/Categories" className="btn btn-primary2 py-4 px-lg-5 d-none d-lg-block">Get Started<i className="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
 

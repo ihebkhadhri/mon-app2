@@ -48,7 +48,7 @@ export default class Authentification extends React.Component {
         console.log(res.data);
         this.setState({ ourtoken: res.data })
         sessionStorage.setItem("Token", res.data.jwttoken);
-        sessionStorage.setItem("Role",res.data.role);
+        sessionStorage.setItem("Role", res.data.role);
         document.getElementById('error').style.display = "none";
         if (res.data.role == "Administrateur")
           window.location.href = "/AllTemplate";
@@ -64,30 +64,41 @@ export default class Authentification extends React.Component {
   render() {
     return (
 
-                        
-                        <div className="wrapper fadeInDown">
-                          <div id="formContent">
 
-                            <div className="fadeIn first">
-
-                            </div>
-
-                            <form>
-                              <input required type="text" id="login" className="fadeIn second" name="login" placeholder="login" value={this.state.username}
-                                onChange={this.onChangeUsername} />
-                              <input required type="password" value={this.state.password}
-                                onChange={this.onChangePassword} id="password" className="fadeIn third" name="login" placeholder="password" />
-                              <input type="button" onClick={this.onSubmit} className="fadeIn fourth" value="Log In" />
-                              <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
-                            </form>
+      <div class="row g-4 justify-content-center">
+        <div className="col-lg-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
+          <div className="bg-primary2 text-center p-5">
+            <h1 className="mb-4">Se Connecter</h1>
+            <form>
+              <div className="row g-3">
 
 
 
-                          </div>
-                        </div>
+                <div className="col-sm-12">
+                  <div className="form-floating">
+                    <input className="form-control border-0" required type="text" id="login" name="login" placeholder="login" value={this.state.username} onChange={this.onChangeUsername} />
+                    <label htmlFor="cage">Nom Utilisateur</label>
+                  </div>
+                </div>
+                <div className="col-12">
+                  <div className="form-floating">
+                    <input className="form-control border-0" required type="password" id="password" name="password" placeholder="password" value={this.state.password} onChange={this.onChangePassword} />
+                    <label htmlFor="message"> Mot de passe</label>
+                  </div>
+                </div>
+                <div className="col-12">
+
+                  <input type="button" onClick={this.onSubmit} className="btn btn-dark w-100 py-3" value="Log In" />
+                  <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
 
-                    
 
 
 

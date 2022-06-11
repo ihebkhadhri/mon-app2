@@ -32,7 +32,8 @@ export default class HeaderFront extends React.Component {
                 <NavBarComponent />
 
 
-                    
+                    <br/>
+                    <br/>
 
 
 
@@ -51,10 +52,8 @@ export default class HeaderFront extends React.Component {
                                                     <Route exact path='/Rapport/:id' element={< Rapport_modification />}></Route>
 
 
-                                                    <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>
-                                                    <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>
 
-                                                    <Route exact path='/a' element={< Accueil />}></Route>
+                                                    <Route exact path='/' element={< Accueil />}></Route>
 
 
 

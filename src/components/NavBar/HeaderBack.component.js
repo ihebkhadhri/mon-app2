@@ -1531,12 +1531,8 @@ export default class HeaderBack extends React.Component {
                                                 </a>
 
                                                 <Routes>
-                                                    <Route exact path='/Templates/:id' element={< Rapport_template />}></Route>
 
-                                                    <Route exact path='/Authentification' element={< Authentification />}></Route>
-                                                    <Route exact path='/Templates' element={< Rapport_template />}></Route>
-                                                    <Route exact path='/Categories' element={< Categorie />}></Route>
-                                                    <Route exact path='/Rapport/:id' element={< Rapport_modification />}></Route>
+                                                <Route exact path='/Authentification' element={< Authentification />}></Route>
 
 
                                                     <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>

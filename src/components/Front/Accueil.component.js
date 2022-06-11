@@ -29,7 +29,7 @@ export default class Accueil extends React.Component {
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img className="w-100" src="img/carousel-2.jpg" alt="Image" />
+                    <img className="w-100" src="img/cr1.jpg" alt="Image" />
                     <div className="carousel-caption" style={{ left:"0px", right:"0px" }}>
                         <div className="container">
                             <div className="row justify-content-center">
