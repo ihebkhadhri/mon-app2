@@ -1,7 +1,7 @@
 import React from 'react';
 
 import axios from 'axios';
-
+import $ from 'jquery'
 
 import Rapport_template from '../../components/Front/Rapport_template.component';
 import Categorie from '../../components/Front/Categorie';
@@ -17,6 +17,11 @@ import SidebarComponent from '../SideBar/sidebar.component';
 
 export default class HeaderBack extends React.Component {
 
+
+    componentDidMount() {
+        $(".front").attr("disabled", "disabled");
+        $(".back").removeAttr("disabled");
+      }
 
     render() {
         return (
