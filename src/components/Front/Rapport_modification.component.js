@@ -101,6 +101,9 @@ export default class Rapport_modification extends React.Component {
               <li draggable="true">{this.state.integration.age} </li>
               <li draggable="true">{this.state.integration.dateNaissance} </li>
               <li draggable="true">{this.state.integration.nationalite} </li>
+              <li draggable="true">{this.state.integration.sex} </li>
+              <li draggable="true">{this.state.integration.prixUnitaire} </li>
+              <li draggable="true">{this.state.integration.adresse} </li>
 
               <h4>Liste des titres</h4>
 

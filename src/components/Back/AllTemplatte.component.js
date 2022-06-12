@@ -3,6 +3,11 @@ import axios from 'axios';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
+
+import './../../jquery.dataTables.min.css'
+
+$.DataTable = require('datatables.net');
 
 
 export default class AllTemplate extends React.Component {
@@ -17,6 +22,9 @@ export default class AllTemplate extends React.Component {
 
 
     componentDidMount() {
+        
+
+
         try {
             const res2 = axios.get("https://localhost:7103/Template/AdminAllTemplatesByCategorie")
                 .then(res => {
@@ -24,10 +32,13 @@ export default class AllTemplate extends React.Component {
                     this.setState({
                         tempates: res.data
                     });
+                    $('#dt').DataTable({"pagingType": "full_numbers"});
+                    $('.dataTables_length').addClass('bs-select');
                 });
         } catch (ex) {
             console.log(ex);
         }
+       
 
     }
 
@@ -82,13 +93,17 @@ export default class AllTemplate extends React.Component {
     render() {
         return (
             <div className="templates">
-                <table className="table">
+                <h2>Nos Templates</h2>
+                <table id="dt" className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%" >
+                   
+                   <thead>
                     <tr>
                         <th>Reference</th>
                         <th>Nom</th>
                         <th>Action</th>
 
                     </tr>
+                    </thead>
 
                     <tbody>
                         {this.state.tempates.map((item, index) => {
@@ -97,8 +112,9 @@ export default class AllTemplate extends React.Component {
                                     <th>{item.id}</th>
                                     <th>{item.nom}.pdf</th>
                                     <th>
-                                        <button onClick={() => this.downloadfile(item.id)}>Télécharger</button>
-                                        <a href="">Supprimer</a> </th>
+                                        <button className="btn-link" onClick={() => this.downloadfile(item.id)}><i className="fas fa-download"></i></button>
+                                        <button className="btn-link" onClick={() =>this}><i className="fas fa-trash-alt" style={{ color:"red"}}></i></button>
+                                        </th>
                                 </tr>
                             )
                         })}
