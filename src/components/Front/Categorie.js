@@ -83,7 +83,7 @@ export default class Categorie extends React.Component {
 
                   <div className="col-sm-12">
                     <div className="form-floating">
-                      <input className="form-control border-0" required type="file" onChange={this.saveFileSelected} />
+                      <input className="form-control border-0" accept="text/xml" required type="file" onChange={this.saveFileSelected} />
                       <label htmlFor="cage">Importer votre fichier</label>
                     </div>
                   </div>
