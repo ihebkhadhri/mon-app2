@@ -43,28 +43,32 @@ export default class Rapport_modification extends React.Component {
 
 
 
-    
-    axios.get(`https://localhost:7103/Integration/GetIntegration/`+idi)
-      .then(res => { console.log(res.data);
-        this.setState({integration:res.data,
-          
+
+    axios.get(`https://localhost:7103/Integration/GetIntegration/` + idi)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          integration: res.data,
+
         })
-        
-        
+
+
       })
 
 
-      axios.get(`https://localhost:7103/Integration/GetFinalPdf/`+idi)
-      .then(res => { console.log(res.data);
+    axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + idi)
+      .then(res => {
+        console.log(res.data);
         this.setState({
           docs: [
-            {  uri: "data:application/pdf;base64, " + encodeURI(res.data)
-          }
+            {
+              uri: "data:application/pdf;base64, " + encodeURI(res.data)
+            }
           ]
 
+        })
       })
-  })
-}
+  }
 
 
 
@@ -72,6 +76,15 @@ export default class Rapport_modification extends React.Component {
   render() {
     return (
       <div className="templates">
+
+<h4 className='titre'>Editer ou modifier le document final, si nécessaire, puis une fois vous terminez, vous pouvez télecharger votre rapport final</h4>
+
+        <div className=" d-flex justify-content-center" style={{ marginBottom: "20px" }}>
+          <div className="progress col-6 ">
+            <div className="progress-bar progress-bar-striped w-75 progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+        </div>
 
         <div className="row">
 
@@ -82,7 +95,7 @@ export default class Rapport_modification extends React.Component {
               documents={this.state.docs}
               config={{
                 header: {
-                  disableHeader: false,
+                  disableHeader: true,
                   disableFileName: false,
                   retainURLParams: false
                 }
@@ -96,7 +109,7 @@ export default class Rapport_modification extends React.Component {
             <ul>
 
               <li> Mes Données </li>
-              <li draggable="true" style={{cursor:'move'}}>{this.state.integration.nom} </li>
+              <li draggable="true" style={{ cursor: 'move' }}>{this.state.integration.nom} </li>
               <li draggable="true">{this.state.integration.prenom} </li>
               <li draggable="true">{this.state.integration.age} </li>
               <li draggable="true">{this.state.integration.dateNaissance} </li>
@@ -135,9 +148,9 @@ export default class Rapport_modification extends React.Component {
               {
                 this.state.integration.tableaux != null ?
                   this.state.integration.tableaux.map((p) => <li >{p.libelle} <ul>
-                    {p.lignes.map((ligne,index) => <li > Ligne:{index+1}<ul>
-                      {ligne.colonnes.map((c) => <li >{ c.libelle}</li>)}
-                      </ul></li>)}
+                    {p.lignes.map((ligne, index) => <li > Ligne:{index + 1}<ul>
+                      {ligne.colonnes.map((c) => <li >{c.libelle}</li>)}
+                    </ul></li>)}
                   </ul>
                   </li>
                   )
