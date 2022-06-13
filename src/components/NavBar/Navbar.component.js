@@ -11,7 +11,7 @@ export default class NavBarComponent extends React.Component {
     
       <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
         <a href="index.html" className="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 className="m-0"><i className="fa fa-car text-primary2 me-2"></i>Corilus</h2>
+            <h2 className="m-0"> <img  width="80" height="80" src={process.env.PUBLIC_URL + '/logo.png'} /></h2>
         </a>
         <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
