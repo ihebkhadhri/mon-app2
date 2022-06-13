@@ -8,18 +8,17 @@ export default class Categorie extends React.Component {
     super(props);
     this.saveFileSelected = this.saveFileSelected.bind(this);
     this.importFile = this.importFile.bind(this);
-<<<<<<< HEAD
+
     
-   // if(sessionStorage.getItem("Token")==null)
-//{
- // window.location.href="/Authentification";
-//}
-=======
+  if(sessionStorage.getItem("Token")==null)
+{
+ window.location.href="/Authentification";
+}
+
 
     if (sessionStorage.getItem("Token") == null) {
       window.location.href = "/Authentification";
     }
->>>>>>> fba2b7219a1c3317f7d9bcb007acb977de65d4ab
 
   }
 
@@ -57,13 +56,13 @@ export default class Categorie extends React.Component {
   };
 
   componentDidMount() {
-<<<<<<< HEAD
+
     
     axios.get(`https://localhost:7103/Categorie/GetAll/`)
-=======
+
 
     axios.get(`https://localhost:7103/Categorie/GetCategorie/`)
->>>>>>> fba2b7219a1c3317f7d9bcb007acb977de65d4ab
+
       .then(res => {
 
         const categories = res.data;
