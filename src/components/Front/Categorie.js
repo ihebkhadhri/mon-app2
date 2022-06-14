@@ -18,9 +18,7 @@ export default class Categorie extends React.Component {
     }
 
 
-    if (sessionStorage.getItem("Token") == null) {
-      window.location.href = "/Authentification";
-    }
+    
 
   }
 
@@ -83,7 +81,6 @@ if(this.state.filex==null){
 
     $(".alert-Div").hide();
 
-    axios.get(`https://localhost:7103/Categorie/GetAll/`)
 
 
     axios.get(`https://localhost:7103/Categorie/GetCategorie/`)
