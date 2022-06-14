@@ -12,6 +12,7 @@ import AllTemplate from "../../components/Back/AllTemplatte.component";
 import { Switch, Routes, BrowserRouter, Route, Router } from 'react-router-dom';
 import Accueil from '../Front/Accueil.component';
 import $ from 'jquery'
+import ArchiveClient from '../Front/ArchiveClient';
 
 
 export default class HeaderFront extends React.Component {
@@ -50,7 +51,7 @@ export default class HeaderFront extends React.Component {
                                                     <Route exact path='/Templates' element={< Rapport_template />}></Route>
                                                     <Route exact path='/Categories' element={< Categorie />}></Route>
                                                     <Route exact path='/Rapport/:id' element={< Rapport_modification />}></Route>
-
+                                                    <Route exact path='/MesArchives' element={< ArchiveClient />}></Route>
 
 
                                                     <Route exact path='/' element={< Accueil />}></Route>

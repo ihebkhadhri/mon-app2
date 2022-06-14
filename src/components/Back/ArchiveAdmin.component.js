@@ -80,7 +80,7 @@ export default class ArchiveAdmin extends React.Component {
                             <tr>
                                 
                                 <th>{item.id}.pdf</th>
-                                <th>elee</th>
+                                <th>{item.userImport.displayName}</th>
                                 <th>{item.created}</th>
 
                                 <th>
