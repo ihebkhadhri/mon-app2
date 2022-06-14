@@ -11,7 +11,8 @@ export default class AddCategorie extends Component {
     this.state = {
       id: null,
       libelle: "",
-      description: ""
+      description: "",
+      submitted: false
     };
   }
   onChangeLibelle(e) {

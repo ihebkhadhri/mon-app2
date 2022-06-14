@@ -1,13 +1,15 @@
 import axios from 'axios';
-
+const headers = {
+    'Content-Type': 'application/json'
+  } 
 class CategorieService {
-
+   
     getCategories(){
         return axios.get("https://localhost:7103/Categorie/GetAll/");
     }
 
     createCategorie(categorie){
-        return axios.post("https://localhost:7103/Categorie/Post/", categorie);
+        return axios.post("https://localhost:7103/Categorie/Post/", categorie,{headers:headers});
     }
 
     getCategorieById(categorieId){
