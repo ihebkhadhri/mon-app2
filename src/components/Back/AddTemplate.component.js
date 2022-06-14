@@ -78,7 +78,7 @@ export default class Categorie extends React.Component {
 
   componentDidMount() {
 
-    axios.get(`https://localhost:7103/Categorie/GetCategorie/`)
+    axios.get(`https://localhost:7103/Categorie/GetAll/`)
       .then(res => {
 
         const categories = res.data;

@@ -32,6 +32,18 @@ export default class NavBarComponent extends React.Component {
                     </div>
                 </div>
                 <a href="contact.html" className="nav-item nav-link">Contact</a>
+                
+
+                <div className="nav-item dropdown">
+                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Connexion</a>
+                    <div className="dropdown-menu bg-light m-0">
+                        <a href="Authentification" className="dropdown-item">Se connecter</a>
+                        <a href="Inscription" className="dropdown-item">Inscription</a>
+                        
+                    </div>
+                </div>
+
+
             </div>
             
             <a href="/Categories" className="btn btn-primary2 py-4 px-lg-5 d-none d-lg-block">Get Started<i className="fa fa-arrow-right ms-3"></i></a>

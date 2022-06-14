@@ -83,7 +83,7 @@ if(this.state.filex==null){
 
 
 
-    axios.get(`https://localhost:7103/Categorie/GetCategorie/`)
+    axios.get(`https://localhost:7103/Categorie/GetAll/`)
 
       .then(res => {
 
