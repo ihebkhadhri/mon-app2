@@ -15,6 +15,7 @@ import AddCategorie from "../../components/Back/AddCategorie.component";
 
 import { Switch, Routes, BrowserRouter, Route, Router } from 'react-router-dom';
 import SidebarComponent from '../SideBar/sidebar.component';
+import ArchiveAdmin from '../Back/ArchiveAdmin.component';
 
 
 export default class HeaderBack extends React.Component {
@@ -210,6 +211,7 @@ export default class HeaderBack extends React.Component {
 
                                                     <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>
                                                     <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>
+                                                    <Route exact path='/AllArchives' element={< ArchiveAdmin />}></Route>
 
                                                 </Routes>
                                             </div>
