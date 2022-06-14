@@ -27,15 +27,15 @@ export default class Categorie extends React.Component {
   state = {
     categories: [],
     filex: null,
-    categorie_selected:"",
+    categorie_selected: "",
   }
 
-  changeCategorie(event){
+  changeCategorie(event) {
     $('option[value="0"]').attr("disabled", "disabled");
-    this.setState({categorie_selected: event.target.value});
-   
+    this.setState({ categorie_selected: event.target.value });
 
-}
+
+  }
 
 
   saveFileSelected(e) {
@@ -52,11 +52,25 @@ export default class Categorie extends React.Component {
 
 
   importFile = (e) => {
+    if(this.state.categorie_selected==""){
+      $(".alert-Div").slideDown(2000);
+      $(".alert-warnn").html("Vous devez sélectionner une catégorie");
+      $(".alert-Div").slideUp(10000);
+      return;
+    }
+
+if(this.state.filex==null){
+  $(".alert-Div").slideDown(2000);
+  $(".alert-warnn").html("Vous devez sélectionner un fichier");
+  $(".alert-Div").slideUp(10000);
+  return
+}
+
     const formData = new FormData();
     formData.append("file", this.state.filex);
     try {
       const res = axios.post("https://localhost:7103/Integration/AddIntegration", formData).then(res => {
-        sessionStorage.setItem("Categorie",this.state.categorie_selected);
+        sessionStorage.setItem("Categorie", this.state.categorie_selected);
         console.log(res.data);
         window.location.href = "/Templates/" + res.data;
       });
@@ -67,6 +81,7 @@ export default class Categorie extends React.Component {
 
   componentDidMount() {
 
+    $(".alert-Div").hide();
 
     axios.get(`https://localhost:7103/Categorie/GetAll/`)
 
@@ -84,6 +99,9 @@ export default class Categorie extends React.Component {
   render() {
     return (
       <div>
+        <div class="alert-Div alert alert-warning">
+          <strong>Warnig!</strong> <span className='alert-warnn'> </span>.
+        </div>
         <h4 className='titre'>Image conversion prend habituellement quelques secondes. Convertir xml à pdf très rapidement.</h4>
         <h4 className='titre'>Il suffit à déposer vos fichiers xml sur la page et choisir la catégorie pour convertir pdf.</h4>
 

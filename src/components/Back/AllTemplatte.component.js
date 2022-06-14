@@ -11,7 +11,7 @@ $.DataTable = require('datatables.net');
 
 
 
-  
+
 export default class AllTemplate extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ export default class AllTemplate extends React.Component {
     state = {
         tempates: []
     }
-    
+
 
 
     componentDidMount() {
@@ -81,7 +81,7 @@ export default class AllTemplate extends React.Component {
 
 
                 $(".alert-supprimer").fadeIn(1100);
-                    setInterval(function () { document.location.reload() }, 2500);
+                setInterval(function () { document.location.reload() }, 2500);
 
             }
         };
@@ -89,7 +89,7 @@ export default class AllTemplate extends React.Component {
 
     }
 
-    
+
 
 
 
