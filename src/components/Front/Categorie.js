@@ -1,6 +1,7 @@
 import React from 'react';
 
 import axios from 'axios';
+import $ from 'jquery';
 
 export default class Categorie extends React.Component {
 
@@ -8,23 +9,30 @@ export default class Categorie extends React.Component {
     super(props);
     this.saveFileSelected = this.saveFileSelected.bind(this);
     this.importFile = this.importFile.bind(this);
+    this.changeCategorie = this.changeCategorie.bind(this);
 
-    
-  if(sessionStorage.getItem("Token")==null)
-{
- window.location.href="/Authentification";
-}
 
 
     if (sessionStorage.getItem("Token") == null) {
       window.location.href = "/Authentification";
     }
 
+
+    
+
   }
 
   state = {
     categories: [],
     filex: null,
+    categorie_selected: "",
+  }
+
+  changeCategorie(event) {
+    $('option[value="0"]').attr("disabled", "disabled");
+    this.setState({ categorie_selected: event.target.value });
+
+
   }
 
 
@@ -42,11 +50,25 @@ export default class Categorie extends React.Component {
 
 
   importFile = (e) => {
+    if(this.state.categorie_selected==""){
+      $(".alert-Div").slideDown(2000);
+      $(".alert-warnn").html("Vous devez sélectionner une catégorie");
+      $(".alert-Div").slideUp(10000);
+      return;
+    }
+
+if(this.state.filex==null){
+  $(".alert-Div").slideDown(2000);
+  $(".alert-warnn").html("Vous devez sélectionner un fichier");
+  $(".alert-Div").slideUp(10000);
+  return
+}
+
     const formData = new FormData();
     formData.append("file", this.state.filex);
     try {
       const res = axios.post("https://localhost:7103/Integration/AddIntegration", formData).then(res => {
-
+        sessionStorage.setItem("Categorie", this.state.categorie_selected);
         console.log(res.data);
         window.location.href = "/Templates/" + res.data;
       });
@@ -57,8 +79,8 @@ export default class Categorie extends React.Component {
 
   componentDidMount() {
 
-    
-    axios.get(`https://localhost:7103/Categorie/GetAll/`)
+    $(".alert-Div").hide();
+
 
 
     axios.get(`https://localhost:7103/Categorie/GetCategorie/`)
@@ -74,6 +96,9 @@ export default class Categorie extends React.Component {
   render() {
     return (
       <div>
+        <div class="alert-Div alert alert-warning">
+          <strong>Warnig!</strong> <span className='alert-warnn'> </span>.
+        </div>
         <h4 className='titre'>Image conversion prend habituellement quelques secondes. Convertir xml à pdf très rapidement.</h4>
         <h4 className='titre'>Il suffit à déposer vos fichiers xml sur la page et choisir la catégorie pour convertir pdf.</h4>
 
@@ -100,11 +125,13 @@ export default class Categorie extends React.Component {
                     </div>
                   </div>
                   <div className="col-12">
-                    <div className="form-floating">
-                      <select className="form-control border-0" >
-                        {this.state.categories.map(categorie => <option>{categorie.libelle}</option>)}
+                    <div >
+                      <label htmlFor="cage" style={{ color: 'gray' }}> Sélectionner Catégorie</label>
+                      <select onChange={this.changeCategorie} className="form-control border-0 form-control form-control-warning">
+                        <option value="0" style={{ textAlign: 'center' }}> --catégories--</option>
+                        {this.state.categories.map(categorie => <option value={categorie.id} >{categorie.libelle}</option>)}
                       </select>
-                      <label htmlFor="cage">Categorie</label>
+
                     </div>
                   </div>
                   <div className="col-12">

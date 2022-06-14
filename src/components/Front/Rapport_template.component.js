@@ -23,16 +23,17 @@ export default class Rapport_template extends React.Component {
 
   componentDidMount() {
 
+    $(".alert-Div").hide();
     $('#loaderr').hide();
     if (sessionStorage.getItem("Token") == null) {
       window.location.href = "/Authentification";
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://localhost:7103/Template/AllTemplatesByCategorie");
+   let categorie_selected= sessionStorage.getItem("Categorie");
+   
 
 
-    axios.get("https://localhost:7103/Template/AllTemplatesByCategorie")
+    axios.get("https://localhost:7103/Template/AllTemplatesByCategorie/"+categorie_selected)
     .then(res => {
        
 
@@ -90,9 +91,19 @@ export default class Rapport_template extends React.Component {
     this.setState({ idtemplate: e.target.id })
     $(".docviewerrr").css("border","none");
     $('#doc'+e.target.id).css("border","1px solid #F3BD00");
+    $(".alert-Div").hide();
   }
 
   onpasse(e) {
+
+    if(this.state.idtemplate==0){
+      $(".alert-Div").slideDown(2000);
+      $(".alert-warnn").html("Vous devez sélectionner une template");
+      $(window).scrollTop(0);
+      return;
+    }
+
+
     $('#loaderr').show();
 
     e.preventDefault();
@@ -115,6 +126,10 @@ export default class Rapport_template extends React.Component {
   render() {
     return (
       <div className="templates">
+         <div class="alert-Div alert alert-warning">
+          <strong>Warnig!</strong> <span className='alert-warnn'> </span>.
+        </div>
+        
         <div id="loaderr" style={{zIndex:'9999999'}}></div>
 
         <h4 className='titre'>Ces modèles sont prêts à l’emploi, il ne vous reste alors plus qu’à les compléter et à les adapter selon votre profil</h4>
@@ -152,9 +167,11 @@ export default class Rapport_template extends React.Component {
 
 
         </div>
+       
         <div>
           <button onClick={this.onpasse} style={{ color: "#CA300A", fontWeight: "bold" }} > Suivant </button>
         </div>
+        
       </div>
     );
   }
