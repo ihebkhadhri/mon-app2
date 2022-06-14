@@ -28,11 +28,11 @@ export default class Rapport_template extends React.Component {
       window.location.href = "/Authentification";
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://localhost:7103/Template/AllTemplatesByCategorie");
+   let categorie_selected= sessionStorage.getItem("Categorie");
+   
 
 
-    axios.get("https://localhost:7103/Template/AllTemplatesByCategorie")
+    axios.get("https://localhost:7103/Template/AllTemplatesByCategorie/"+categorie_selected)
     .then(res => {
        
 
