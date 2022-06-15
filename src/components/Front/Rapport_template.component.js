@@ -130,7 +130,7 @@ export default class Rapport_template extends React.Component {
               xhrecrire.onload = function () {
                   if (this.status === 200) {
       
-      
+                    sessionStorage.setItem("idtemplate", idtemplate); 
                     window.location.href = "/Rapport/" + idIntegration;
       
       

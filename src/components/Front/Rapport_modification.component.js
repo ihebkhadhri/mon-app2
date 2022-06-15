@@ -57,17 +57,35 @@ export default class Rapport_modification extends React.Component {
 
 
 
-
-    axios.get(`https://localhost:7103/Integration/GetIntegration/` + idi)
-      .then(res => {
-        console.log(res.data);
-        this.setState({
-          integration: res.data,
-
-        })
+    
 
 
-      })
+
+     
+      
+
+
+
+    var xhr = new XMLHttpRequest();
+    var json_obj, status = false;
+    xhr.open("GET",'https://localhost:7103/Integration/GetIntegration/'+idi, true);
+    xhr.onload = function (e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var json_obj = JSON.parse(xhr.responseText);
+          status = true;
+          this.setState({ integration: json_obj});
+        } else {
+          console.error(xhr.statusText);
+        }
+      }
+    }.bind(this);
+    xhr.onerror = function (e) {
+      console.error(xhr.statusText);
+    };
+    xhr.send(null);
+
+
 
 
     axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + idi)
@@ -128,12 +146,52 @@ export default class Rapport_modification extends React.Component {
   }
   
    handleDrop (evt) {
+    console.log(this.state.integration.age);
     console.log("5")
     evt.stopPropagation();
     
     if (dragSource !== evt.target) {
       dragSource.innerHTML = evt.target.innerHTML;
       evt.target.innerHTML = evt.dataTransfer.getData('text/html');
+
+      
+        
+      this.state.integration.nom=document.getElementById("nom").innerHTML;
+      this.state.integration.prenom=document.getElementById("prenom").innerHTML;
+      this.state.integration.age=document.getElementById("age").innerHTML;
+      this.state.integration.dateNaissance=document.getElementById("dateNaissance").innerHTML;
+      this.state.integration.nationalite=document.getElementById("nationalite").innerHTML;
+
+      console.log(this.state.integration.age);
+      
+      
+
+let integrationobject=this.state.integration;
+
+
+      var xhrecrire = new XMLHttpRequest();
+      xhrecrire.open("PUT", 'https://localhost:7103/Integration/EcrireTemplate/' + sessionStorage.getItem("idtemplate"),integrationobject, false);
+      xhrecrire.setRequestHeader("Content-Type", "application/json");
+
+
+      xhrecrire.onload = function () {
+          if (this.status === 200) {
+
+            sessionStorage.setItem("idtemplate", sessionStorage.getItem("idtemplate")); 
+            window.location.reload(); 
+
+
+            
+
+          }
+      };
+      console.log("*******************7777777777************")
+console.log(integrationobject);
+      xhrecrire.send(integrationobject);
+
+      
+      
+      
     }
     
     evt.preventDefault();
@@ -187,14 +245,14 @@ export default class Rapport_modification extends React.Component {
             <ul>
 
               <li > Mes Données </li>
-              <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{this.state.integration.nom} </li>
-              <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true">{this.state.integration.prenom} </li>
-              <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true">{this.state.integration.age} </li>
-              <li className='donnes' draggable="true">{this.state.integration.dateNaissance} </li>
-              <li className='donnes' draggable="true">{this.state.integration.nationalite} </li>
-              <li className='donnes' draggable="true">{this.state.integration.sex} </li>
-              <li className='donnes' draggable="true">{this.state.integration.prixUnitaire} </li>
-              <li className='donnes' draggable="true">{this.state.integration.adresse} </li>
+              <li id="nom" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{this.state.integration.nom} </li>
+              <li id="prenom" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true"style={{ cursor: 'move' }}>{this.state.integration.prenom} </li>
+              <li id="age" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true"style={{ cursor: 'move' }}>{this.state.integration.age} </li>
+              <li id="dateNaissance"onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true"style={{ cursor: 'move' }}>{this.state.integration.dateNaissance} </li>
+              <li id="nationalite" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true"style={{ cursor: 'move' }}>{this.state.integration.nationalite} </li>
+              <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true"style={{ cursor: 'move' }}>{this.state.integration.sex} </li>
+              <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{this.state.integration.prixUnitaire} </li>
+              <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{this.state.integration.adresse} </li>
 
               <h4>Liste des titres</h4>
 
