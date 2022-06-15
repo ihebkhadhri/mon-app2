@@ -40,7 +40,7 @@ class ListCategorie extends React.Component {
                  <h2 className="text-center">Categories List</h2>
                  <div className = "">
                  <button className="btn btn-info"> 
-                    <Link to={"/add"} className="nav-link">Add </Link>
+                    <Link to={"/AddCategorie"} className="nav-link">Add </Link>
                  </button>
                     
                  </div>
@@ -63,7 +63,10 @@ class ListCategorie extends React.Component {
                                              <td> {categorie.libelle} </td>   
                                              <td> {categorie.description}</td>
                                              <td>
-                                                 <button onClick={ () => this.editCategorie(categorie.id)} className="btn btn-info">Update </button>
+                    
+                                                 <button className="btn btn-info"> 
+                                                    <Link to={"/UpdateCategorie"} className="nav-link">Update </Link>
+                                                 </button>
                                                  <button style={{marginLeft: "10px"}} onClick={ () => this.deleteCategorie(categorie.id)} className="btn btn-danger">Delete </button>
                                                  
                                              </td>

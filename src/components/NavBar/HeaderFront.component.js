@@ -8,6 +8,7 @@ import Rapport_modification from "../../components/Front/Rapport_modification.co
 import Authentification from "../../components/Front/Authentification.component";
 import AddTemplate from "../../components/Back/AddTemplate.component";
 import AllTemplate from "../../components/Back/AllTemplatte.component";
+import Inscription from "../../components/Front/Inscription.component";
 
 import { Switch, Routes, BrowserRouter, Route, Router } from 'react-router-dom';
 import Accueil from '../Front/Accueil.component';
@@ -46,7 +47,7 @@ export default class HeaderFront extends React.Component {
                                                 
                                             <Routes>
                                                     <Route exact path='/Templates/:id' element={< Rapport_template />}></Route>
-
+                                                    <Route exact path='/inscription' element={< Inscription />}></Route>
                                                     <Route exact path='/Authentification' element={< Authentification />}></Route>
                                                     <Route exact path='/Templates' element={< Rapport_template />}></Route>
                                                     <Route exact path='/Categories' element={< Categorie />}></Route>

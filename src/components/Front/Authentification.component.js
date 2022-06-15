@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 import './Authentification.component.css'; // Tell webpack that Button.js uses these styles
 import SidebarComponent from "../../components/SideBar/sidebar.component";
 import NavBarComponent from '../NavBar/Navbar.component';
-
+import { Link } from "react-router-dom";
 export default class Authentification extends React.Component {
 
 
@@ -90,6 +90,10 @@ export default class Authentification extends React.Component {
                 <div className="col-12">
 
                   <input type="button" onClick={this.onSubmit} className="btn btn-dark w-100 py-3" value="Log In" />
+                  <div><br></br></div>
+                  <button className="btn btn-dark w-100 py-3"> 
+                                                    <Link to={"/inscription"} className="nav-link"><p >S'inscrire</p> </Link>
+                                                 </button>
                   <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
 
                 </div>
