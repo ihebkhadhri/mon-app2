@@ -108,12 +108,55 @@ export default class Rapport_template extends React.Component {
 
     e.preventDefault();
 
-    axios.get('https://localhost:7103/Integration/EcrireTemplate/' + this.state.idintegration + '/' + this.state.idtemplate)
-      .then(res => {
 
-        console.log(res.data);
-        window.location.href = "/Rapport/" + this.state.idintegration;
-      });
+    let idtemplate=this.state.idtemplate;
+    let idIntegration=this.state.idintegration;
+    
+    var xhr = new XMLHttpRequest();
+        xhr.open("GET", `https://localhost:7103/Integration/GetIntegration/` + this.state.idintegration);
+
+
+        xhr.onload = function () {
+            if (this.status === 200) {
+
+                let integration= xhr.response;
+
+
+              var xhrecrire = new XMLHttpRequest();
+              xhrecrire.open("PUT", 'https://localhost:7103/Integration/EcrireTemplate/' + idtemplate,integration, false);
+              xhrecrire.setRequestHeader("Content-Type", "application/json");
+
+      
+              xhrecrire.onload = function () {
+                  if (this.status === 200) {
+      
+      
+                    window.location.href = "/Rapport/" + idIntegration;
+      
+      
+                    
+      
+                  }
+              };
+              xhrecrire.send(integration);
+
+
+
+
+               
+
+
+
+
+            }
+        };
+        xhr.send();
+
+
+
+
+
+    
 
   }
 
