@@ -12,7 +12,7 @@ import AllTemplate from "../../components/Back/AllTemplatte.component";
 import NavBarComponent from "../../components/NavBar/Navbar.component";
 import ListCategorie from "../../components/Back/ListCategorie.component";
 import AddCategorie from "../../components/Back/AddCategorie.component";
-
+import UpdateCategorie from "../../components/Back/UpdateCategorie.component";
 import { Switch, Routes, BrowserRouter, Route, Router } from 'react-router-dom';
 import SidebarComponent from '../SideBar/sidebar.component';
 import ArchiveAdmin from '../Back/ArchiveAdmin.component';
@@ -204,8 +204,8 @@ export default class HeaderBack extends React.Component {
                                                 
                                                 <Route exact path = '/categoriesAdmin' element= {< ListCategorie />}></Route>
                                                
-                                                <Route exact path="/add" element={< AddCategorie />}></Route>
-                                                
+                                                <Route exact path="/AddCategorie" element={< AddCategorie />}></Route>
+                                                <Route exact path="/UpdateCategorie" element={< UpdateCategorie />}></Route>
                                                 <Route exact path='/Authentification' element={< Authentification />}></Route>
                     
 
