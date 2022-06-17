@@ -150,25 +150,41 @@ export default class Inscription extends Component {
                     <label htmlFor="cage">Password</label>
                   </div>
                 </div>
-                <div className="col-12">
-                  <div className="form-floating">
-                    <input className="form-control border-0" required type="text" id="password" name="password" placeholder="password" value={this.state.UserRole}
-                onChange={this.onChangeUserRole} />
+                
 
-
-
-                    <label htmlFor="message"> Role</label>
-                  </div>
-                </div>
-
-
+                <table>
+                  <tr><td><b>Select Role:</b></td><td><div className="radio">
+          
+          <input
+            type="radio"
+            
+            value="1"
+            onChange={this.onChangeUserRole}
+          />
+         <label for="dewey">Utilisateur</label> 
+        
+      </div></td>
+      <td></td>
+ <div className="radio">
+         
+         <input
+           type="radio"
+           value="2"
+           
+           onChange={this.onChangeUserRole}
+         />
+         
+         <label for="dewey">Particulier</label>
+     </div> </tr>
+       
+        </table>    
                 <div className="col-12">
 
                   <input type="button" onClick={this.saveUser} className="btn btn-dark w-100 py-3" value="Log In" />
                   <div><br></br></div>
                   
                   <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
-
+                  
                 </div>
               </div>
             </form>
