@@ -18,10 +18,12 @@ class ListCategorie extends React.Component {
         CategorieService.deleteCategorie(id).then( res => {
             this.setState({categories: this.state.categories.filter(categorie => categorie.id !== id)});
         });
+        alert("Categorie supp avec succées");
     }
    
     editCategorie(id){
-        this.props.history.push(`/add-categorie/${id}`);
+        sessionStorage.setItem("idcat",id);
+        window.location.href =`/UpdateCategorie/`;
     }
 
     componentDidMount(){
@@ -30,9 +32,7 @@ class ListCategorie extends React.Component {
         });
     }
 
-    addCategorie(){
-        this.props.history.push('/add-categorie/_add');
-    }
+ 
 
     render() {
         return (
@@ -64,9 +64,10 @@ class ListCategorie extends React.Component {
                                              <td> {categorie.description}</td>
                                              <td>
                     
-                                                 <button className="btn btn-info"> 
-                                                    <Link to={"/UpdateCategorie"} className="nav-link">Update </Link>
-                                                 </button>
+                                                
+                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.editCategorie(categorie.id)} className="btn btn-danger">Update </button>
+                                                 
+                                                 
                                                  <button style={{marginLeft: "10px"}} onClick={ () => this.deleteCategorie(categorie.id)} className="btn btn-danger">Delete </button>
                                                  
                                              </td>
