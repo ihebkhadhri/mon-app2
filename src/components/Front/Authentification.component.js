@@ -49,7 +49,7 @@ export default class Authentification extends React.Component {
         this.setState({ ourtoken: res.data })
         sessionStorage.setItem("Token", res.data.jwttoken);
         sessionStorage.setItem("Role", res.data.role);
-        sessionStorage.setItem("DisplayName", res.data.displayName);
+        sessionStorage.setItem("DisplayName", res.data.username);
         document.getElementById('error').style.display = "none";
         if (res.data.role == "Administrateur")
           window.location.href = "/AllTemplate";

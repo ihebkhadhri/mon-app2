@@ -83,6 +83,7 @@ export default class Inscription extends Component {
       .catch(e => {
         console.log(e);
       });
+      window.location.href = "/Authentification";
   }
   newUser() {
     this.setState({
