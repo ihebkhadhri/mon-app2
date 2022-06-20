@@ -43,6 +43,8 @@ export default class AddCategorie extends Component {
       .catch(e => {
         console.log(e);
       });
+      alert("Categorie ajouter avec succées");
+      window.location.href = "/categoriesAdmin";
   }
   newCategorie() {
     this.setState({

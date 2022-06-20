@@ -66,6 +66,7 @@ export default class Inscription extends Component {
         userRole: this.state.userRole
     };
     console.log(user);
+    
     UserService.createUser(user)
       .then(response => {
         this.setState({
@@ -79,6 +80,8 @@ export default class Inscription extends Component {
          
         });
         console.log(response.user);
+       
+        
       })
       .catch(e => {
         console.log(e);
@@ -181,7 +184,7 @@ export default class Inscription extends Component {
         </table>    
                 <div className="col-12">
 
-                  <input type="button" onClick={this.saveUser} className="btn btn-dark w-100 py-3" value="Log In" />
+                  <input type="button" onClick={this.saveUser} className="btn btn-dark w-100 py-3" value="S'inscrie" />
                   <div><br></br></div>
                   
                   <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
