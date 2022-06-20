@@ -71,6 +71,7 @@ export default class UpdateCategorie extends Component {
       .catch(e => {
         console.log(e);
       });
+      alert("Update successfully");
       window.location.href = "/categoriesAdmin";
   }
  
