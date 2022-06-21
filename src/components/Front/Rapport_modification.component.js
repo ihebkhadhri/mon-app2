@@ -3,7 +3,10 @@ import axios from 'axios';
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import './Rapport_modification.component.css';
+import SignaturePad from 'react-signature-canvas'
 
+import styles from './styles.module.css'
 var columns = document.querySelectorAll('.donnes');
 var draggingClass = 'dragging';
 var dragSource;
@@ -222,11 +225,6 @@ export default class Rapport_modification extends React.Component {
           };
           xhr.send(integrationobject);
       
-
-
-
-
-
     }
 
     evt.preventDefault();
@@ -331,12 +329,45 @@ export default class Rapport_modification extends React.Component {
               }
 
             </ul>
-
-
+       
+   <App/>
+   
           </div>
 
         </div>
       </div>
     );
+  }
+}
+class App extends React.Component {
+  state = {trimmedDataURL: null}
+  sigPad = {}
+  clear = () => {
+    this.sigPad.clear()
+  }
+  trim = () => {
+    this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
+      .toDataURL('image/png')})
+  }
+  render () {
+    let {trimmedDataURL} = this.state
+    return <div className={styles.container}>
+      <div id="c"className={styles.sigContainer}>
+        <SignaturePad canvasProps={{className: styles.sigPad}}
+          ref={(ref) => { this.sigPad = ref }} />
+      </div>
+      <div>
+        <button className={styles.buttons} onClick={this.clear}>
+          Clear
+        </button>
+        <button className={styles.buttons} onClick={this.trim}>
+          Générer signature
+        </button>
+      </div>
+      {trimmedDataURL
+        ? <img className={styles.sigImage}
+          src={trimmedDataURL} />
+        : null}
+    </div>
   }
 }

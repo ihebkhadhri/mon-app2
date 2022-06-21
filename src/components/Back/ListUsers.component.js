@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import UserService from '../../services/UserService'
+import $ from 'jquery';
 
+$.DataTable = require('datatables.net');
 class ListUser extends React.Component {
     constructor(props) {
         super(props)
@@ -23,6 +25,8 @@ class ListUser extends React.Component {
     componentDidMount(){
         UserService.getUsers().then((res) => {
             this.setState({ users: res.data});
+            $('#dt').DataTable({ "pagingType": "full_numbers" });
+            $('.dataTables_length').addClass('bs-select');
         });
     }
 
@@ -32,7 +36,7 @@ class ListUser extends React.Component {
                  <h2 className="text-center">List Utilisateurs</h2>
                  <br></br>
                  <div className = "row">
-                        <table className = "table table-striped table-bordered">
+                        <table id="dt" className = "table table-striped table-bordered">
 
                             <thead>
                                 <tr>
