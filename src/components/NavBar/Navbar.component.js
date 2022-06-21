@@ -73,7 +73,7 @@ export default class NavBarComponent extends React.Component {
                             <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Connexion</a>
                             <div className="dropdown-menu bg-light m-0">
                                 <NavLink to={'/Authentification'} className="dropdown-item"> Se connecter </NavLink>
-                                <NavLink to={'/Authentification'} className="dropdown-item"> S'inscrire </NavLink>
+                                <NavLink to={'/inscription'} className="dropdown-item"> S'inscrire </NavLink>
 
                             </div>
                         </div>

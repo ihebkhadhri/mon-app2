@@ -17,7 +17,7 @@ import { Switch, Routes, BrowserRouter, Route, Router } from 'react-router-dom';
 import SidebarComponent from '../SideBar/sidebar.component';
 import ArchiveAdmin from '../Back/ArchiveAdmin.component';
 import Validategroup from '../Back/Validategroup.component';
-
+import ListUser from "../../components/Back/ListUsers.component";
 
 export default class HeaderBack extends React.Component {
 
@@ -167,7 +167,7 @@ export default class HeaderBack extends React.Component {
                                             </a>
                                         </li>
                                         <li className="">
-                                            <a href="">
+                                            <a href="http://localhost:3000/Listuser">
                                                 <span className="pcoded-micon"><i className="feather icon-users"></i></span>
                                                 <span className="pcoded-mtext">Profiles</span>
                                                 
@@ -208,7 +208,7 @@ export default class HeaderBack extends React.Component {
                                                 <Route exact path="/AddCategorie" element={< AddCategorie />}></Route>
                                                 <Route exact path="/UpdateCategorie" element={< UpdateCategorie />}></Route>
                                                 <Route exact path='/Authentification' element={< Authentification />}></Route>
-                    
+                                                <Route exact path='/ListUser' element={< ListUser />}></Route>
 
                                                     <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>
                                                     <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>

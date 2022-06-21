@@ -16,6 +16,10 @@ class UserService {
         return axios.get("https://localhost:7103/Token/GetUser"+ '/' + userId);
     }
 
+    deleteUser(userId){
+        return axios.delete("https://localhost:7103/Token/DeleteUser"+ '/' + userId);
+    }
+
 }
 
 export default new UserService()
