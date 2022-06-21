@@ -80,7 +80,7 @@ export default class ArchiveClient extends React.Component {
                             <tr>
                                 
                                 <th>{item.id}.pdf</th>
-                                <th>{item.userImport.displayName}</th>
+                                <th>{item.userImport.username}</th>
                                 <th>{item.created}</th>
 
                                 <th>
