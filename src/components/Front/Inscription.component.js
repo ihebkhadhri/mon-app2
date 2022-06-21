@@ -165,7 +165,7 @@ export default class Inscription extends Component {
             value="1"
             onChange={this.onChangeUserRole}
           />
-         <label for="dewey">Utilisateur</label> 
+         <label for="dewey"> Groupe Corilus </label> 
         
       </div></td>
       <td></td>

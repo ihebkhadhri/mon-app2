@@ -1,7 +1,8 @@
 import React from 'react';
 
 import axios from 'axios';
-import $ from 'jquery'
+import $ from 'jquery';
+import { NavLink } from 'react-router-dom';
 
 import Rapport_template from '../../components/Front/Rapport_template.component';
 import Categorie from '../../components/Front/Categorie';
@@ -25,7 +26,7 @@ export default class HeaderBack extends React.Component {
     componentDidMount() {
         $(".front").attr("disabled", "disabled");
         $(".back").removeAttr("disabled");
-      }
+    }
 
     render() {
         return (
@@ -152,42 +153,114 @@ export default class HeaderBack extends React.Component {
                                                 <span className="pcoded-micon"><i className="feather icon-home"></i></span>
                                                 <span className="pcoded-mtext">Dashboard</span>
                                             </a>
-                                            
+
                                         </li>
                                         <li className="">
-                                            <a href="">
+                                            <NavLink to={'/AllArchives'} >
                                                 <span className="pcoded-micon"><i className="feather icon-sidebar"></i></span>
-                                                <span className="pcoded-mtext">Archives</span>            
-                                            </a> 
+                                                <span className="pcoded-mtext">Archives</span>
+                                            </NavLink>
                                         </li>
-                                        <li className="">
-                                            <a href="http://localhost:3000/AllTemplate">
+                                       
+
+
+
+
+                                        <li className="pcoded-hasmenu">
+                                            <a href="javascript:void(0)">
                                                 <span className="pcoded-micon"><i className="feather icon-image"></i></span>
-                                                <span className="pcoded-mtext">Templates</span>
+                                                <span className="pcoded-mtext">Template</span>
+                                                
                                             </a>
+                                            <ul className="pcoded-submenu">
+
+                                                <li className="">
+                                                    <NavLink to={'/AllTemplate'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Consultation</span>
+                                                    </NavLink>
+                                                </li>
+
+
+                                                <li className="">
+                                                    <NavLink to={'/AddTemplate'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Ajouter</span>
+                                                    </NavLink>
+                                                </li>
+
+
+                                              
+
+                                            </ul>
                                         </li>
-                                        <li className="">
-                                            <a href="http://localhost:3000/Listuser">
+
+
+
+
+
+                                        <li className="pcoded-hasmenu">
+                                            <a href="javascript:void(0)">
                                                 <span className="pcoded-micon"><i className="feather icon-users"></i></span>
                                                 <span className="pcoded-mtext">Profiles</span>
                                                 
                                             </a>
-                                            
+                                            <ul className="pcoded-submenu">
+
+                                                <li className="">
+                                                    <NavLink to={'/Listuser'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Consultation</span>
+                                                    </NavLink>
+                                                </li>
+
+
+                                                <li className="">
+                                                    <NavLink to={'/Corilusgroups'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Validation</span>
+                                                    </NavLink>
+                                                </li>
+
+
+                                              
+
+                                            </ul>
                                         </li>
+
+
+
+
+
                                         <li className="">
-                                            <a href="http://localhost:3000/categoriesAdmin">
+
+                                            <NavLink to={'/categoriesAdmin'} >
                                                 <span className="pcoded-micon"><i className="feather icon-grid"></i></span>
                                                 <span className="pcoded-mtext">Categories</span>
-                                                
-                                            </a>
-                                            
+
+                                            </NavLink>
+
+                                        </li>
+
+                                        <li className="">
+
+                                            <NavLink to={'/Authentification'}    >
+                                                <span className="pcoded-micon"> <i className="fa fa-sign-out-alt"></i> </span>
+                                                <span className="pcoded-mtext">Se déconnecter</span>
+
+                                            </NavLink>
+
                                         </li>
                                     </ul>
-                                    
-                                       
-                                        
-                                   
-                                    
+
+
+
+
+
                                 </div>
                             </nav>
                             <div className="pcoded-content">
@@ -197,18 +270,18 @@ export default class HeaderBack extends React.Component {
 
                                             <div className="page-body">
 
-                                                <a className="mobile-menu" id="mobile-collapse" href="#!" style={{  float:'right' }} >
+                                                <a className="mobile-menu" id="mobile-collapse" href="#!" style={{ float: 'right' }} >
                                                     <i className="feather icon-menu" style={{ fontSize: '2.73em' }}></i>
                                                 </a>
 
                                                 <Routes>
-                                                
-                                                <Route exact path = '/categoriesAdmin' element= {< ListCategorie />}></Route>
-                                               
-                                                <Route exact path="/AddCategorie" element={< AddCategorie />}></Route>
-                                                <Route exact path="/UpdateCategorie" element={< UpdateCategorie />}></Route>
-                                                <Route exact path='/Authentification' element={< Authentification />}></Route>
-                                                <Route exact path='/ListUser' element={< ListUser />}></Route>
+
+                                                    <Route exact path='/categoriesAdmin' element={< ListCategorie />}></Route>
+
+                                                    <Route exact path="/AddCategorie" element={< AddCategorie />}></Route>
+                                                    <Route exact path="/UpdateCategorie" element={< UpdateCategorie />}></Route>
+                                                    <Route exact path='/Authentification' element={< Authentification />}></Route>
+                                                    <Route exact path='/ListUser' element={< ListUser />}></Route>
 
                                                     <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>
                                                     <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>

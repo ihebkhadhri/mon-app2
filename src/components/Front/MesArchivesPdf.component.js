@@ -192,9 +192,7 @@ export default class MesArchivesPdf extends React.Component {
 
                 </div>
 
-                <div>
-                    <button onClick={this.onpasse} style={{ color: "#CA300A", fontWeight: "bold" }} > Suivant </button>
-                </div>
+                
 
             </div>
         );

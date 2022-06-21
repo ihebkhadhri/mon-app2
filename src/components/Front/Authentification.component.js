@@ -12,7 +12,8 @@ export default class Authentification extends React.Component {
   constructor(props) {
     super(props);
 
-    sessionStorage.clear();
+    
+
     this.onChangeUsername = this.onChangeUsername.bind(this);
 
     this.onChangePassword = this.onChangePassword.bind(this);
@@ -26,6 +27,16 @@ export default class Authentification extends React.Component {
     username: "",
     password: "",
     ourtoken: Object
+  }
+
+  componentDidMount(){
+    let tokenAuth = sessionStorage.getItem("Token");
+
+    sessionStorage.clear();
+
+    if (tokenAuth != null) {
+      window.location.href = "/Authentification";
+    }
   }
 
   onChangeUsername(e) {
@@ -91,9 +102,9 @@ export default class Authentification extends React.Component {
 
                   <input type="button" onClick={this.onSubmit} className="btn btn-dark w-100 py-3" value="Log In" />
                   <div><br></br></div>
-                  <button className="btn btn-dark w-100 py-3"> 
-                                                    <Link to={"/inscription"} className="nav-link"><p >S'inscrire</p> </Link>
-                                                 </button>
+                  <button className="btn btn-dark w-100 py-3">
+                    <Link to={"/inscription"} className="nav-link"><p >S'inscrire</p> </Link>
+                  </button>
                   <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
 
                 </div>
