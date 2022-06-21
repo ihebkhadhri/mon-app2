@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import CategorieService from '../../services/CategorieService'
+import './../../jquery.dataTables.min.css'
+import $ from 'jquery';
 
+$.DataTable = require('datatables.net');
 class ListCategorie extends React.Component {
     constructor(props) {
         super(props)
@@ -29,7 +32,10 @@ class ListCategorie extends React.Component {
     componentDidMount(){
         CategorieService.getCategories().then((res) => {
             this.setState({ categories: res.data});
+             $('#dt').DataTable({ "pagingType": "full_numbers" });
+        $('.dataTables_length').addClass('bs-select');
         });
+       
     }
 
  
@@ -37,6 +43,7 @@ class ListCategorie extends React.Component {
     render() {
         return (
             <div>
+                
                  <h2 className="text-center">Categories List</h2>
                  <div className = "">
                  <button className="btn btn-info"> 
@@ -46,7 +53,7 @@ class ListCategorie extends React.Component {
                  </div>
                  <br></br>
                  <div className = "row">
-                        <table className = "table table-striped table-bordered">
+                        <table id="dt" className = "table table-striped table-bordered">
 
                             <thead>
                                 <tr>
