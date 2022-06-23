@@ -76,20 +76,19 @@ export default class Rapport_modification extends React.Component {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           var json_obj = JSON.parse(xhr.responseText);
+          sessionStorage.setItem("integration",JSON.stringify(json_obj));
           status = true;
           this.setState({ integration: json_obj });
+           
         } else {
           console.error(xhr.statusText);
         }
       }
     }.bind(this);
     xhr.onerror = function (e) {
-      console.error(xhr.statusText);
+      console.error(xhr.statusText); 
     };
     xhr.send(null);
-
-
-
 
     axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + idi)
       .then(res => {
@@ -101,19 +100,9 @@ export default class Rapport_modification extends React.Component {
             }
           ]
 
-
-
-
         })
-
-
-
         columns = document.querySelectorAll('.donnes');
         console.log(columns);
-
-
-
-
 
       })
   }
@@ -330,7 +319,7 @@ export default class Rapport_modification extends React.Component {
 
             </ul>
        
-   <App/>
+   <CanvasSignature/>
    
           </div>
 
@@ -339,20 +328,70 @@ export default class Rapport_modification extends React.Component {
     );
   }
 }
-class App extends React.Component {
+class CanvasSignature extends React.Component {
   state = {trimmedDataURL: null}
   sigPad = {}
   clear = () => {
     this.sigPad.clear()
   }
+  
   trim = () => {
     this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
       .toDataURL('image/png')})
+      
+      let theintegration=JSON.parse(sessionStorage.getItem("integration"));
+      console.log(this.state.trimmedDataURL);
+      theintegration.signature = this.state.trimmedDataURL;
+      
+      let integrationobject = JSON.stringify(theintegration);
+      var xhr = new XMLHttpRequest();
+      var json_obj, status = false;
+      xhr.open("PUT", 'https://localhost:7103/Integration/EcrireSignature/' + sessionStorage.getItem("idtemplate"), integrationobject.toString(),this.state.trimmedDataURL, false);
+  xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+          
+  
+   axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + sessionStorage.getItem("integration").id)
+                .then(res => {
+                  console.log(res.data);
+                  this.setState({
+                    docs: [
+                      {
+                        uri: "data:application/pdf;base64, " + encodeURI(res.data)
+                      }
+                    ]
+  
+  
+  
+  
+                  })
+  
+  
+  
+                  columns = document.querySelectorAll('.donnes');
+                  console.log(columns);
+  
+                })
+  
+  
+  
+  
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+      }.bind(this);
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      xhr.send(integrationobject);
   }
   render () {
     let {trimmedDataURL} = this.state
     return <div className={styles.container}>
-      <div id="c"className={styles.sigContainer}>
+      <div id="c" className={styles.sigContainer}>
         <SignaturePad canvasProps={{className: styles.sigPad}}
           ref={(ref) => { this.sigPad = ref }} />
       </div>
@@ -365,7 +404,7 @@ class App extends React.Component {
         </button>
       </div>
       {trimmedDataURL
-        ? <img className={styles.sigImage}
+        ? <img id="i" className={styles.sigImage}
           src={trimmedDataURL} />
         : null}
     </div>

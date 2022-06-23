@@ -59,8 +59,9 @@ export default class UpdateCategorie extends Component {
 
   updateCategorie() {
     CategorieService.updateCategorie(
-      this.state.currentCategorie.id,
-      this.state.currentCategorie
+      this.state.currentCategorie,
+      this.state.currentCategorie.id
+      
     )
       .then(response => {
         console.log(response.data);
