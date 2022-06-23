@@ -5,6 +5,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Rapport_modification.component.css';
 import SignaturePad from 'react-signature-canvas'
+import { NavLink } from 'react-router-dom';
 
 import styles from './styles.module.css'
 var columns = document.querySelectorAll('.donnes');
@@ -264,6 +265,7 @@ export default class Rapport_modification extends React.Component {
           </div>
 
           <div className="col-7 mt-5">
+          <NavLink to={'/mesarchives'} className="btn btn-primary2" > Terminer </NavLink>
             <ul>
 
               <li > Mes Données </li>
@@ -317,9 +319,12 @@ export default class Rapport_modification extends React.Component {
                   null
               }
 
+              <li>
+              <CanvasSignature/>
+              </li>
             </ul>
        
-   <CanvasSignature/>
+  
    
           </div>
 
