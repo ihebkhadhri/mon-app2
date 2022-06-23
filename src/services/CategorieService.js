@@ -17,7 +17,8 @@ class CategorieService {
     }
 
     updateCategorie(categorie, categorieId){
-        return axios.put("https://localhost:7103/Categorie/Update" + '/' + categorieId, categorie,{headers:headers});
+        console.log(categorie);
+        return axios.post("https://localhost:7103/Categorie/Update" + '/' + categorieId, categorie,{headers:headers});
     }
 
     deleteCategorie(categorieId){
