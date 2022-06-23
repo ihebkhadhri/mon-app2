@@ -74,7 +74,7 @@ export default class Validategroup extends React.Component {
                                 
 
                                 <th>
-                                    <button title='Valider utilisateur' className="btn-link" onClick={() => this.validate(item.id)}><i style={{ color:"green" }} class="fas fa-check-circle"></i></button>
+                                    <button title='Valider utilisateur' className="btn-link" onClick={() => this.validate(item.id)}><i style={{ color:"green" }} className="fas fa-check-circle"></i></button>
                                     
                                     </th>
                             </tr>

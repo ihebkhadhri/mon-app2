@@ -96,7 +96,7 @@ if(this.state.filex==null){
   render() {
     return (
       <div>
-        <div class="alert-Div alert alert-warning">
+        <div className="alert-Div alert alert-warning">
           <strong>Warnig!</strong> <span className='alert-warnn'> </span>.
         </div>
         <h4 className='titre'>Image conversion prend habituellement quelques secondes. Convertir xml à pdf très rapidement.</h4>
@@ -109,7 +109,7 @@ if(this.state.filex==null){
 
         </div>
 
-        <div class="row g-4 justify-content-center">
+        <div className="row g-4 justify-content-center">
           <div className="col-lg-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
             <div className="bg-primary2 text-center p-5">
               <h1 className="mb-4">sélectionnez un fichier xml que vous souhaitez convertir</h1>

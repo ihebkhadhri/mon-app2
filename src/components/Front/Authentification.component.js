@@ -77,7 +77,7 @@ export default class Authentification extends React.Component {
     return (
 
 
-      <div class="row g-4 justify-content-center">
+      <div className="row g-4 justify-content-center">
         <div className="col-lg-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
           <div className="bg-primary2 text-center p-5">
             <h1 className="mb-4">Se Connecter</h1>

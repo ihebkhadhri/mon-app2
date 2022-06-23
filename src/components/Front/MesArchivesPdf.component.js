@@ -151,9 +151,9 @@ export default class MesArchivesPdf extends React.Component {
 
                 <h4 className='titre '>Mes Archives</h4>
                 <div className='row' style={{ display: 'inline-block', marginBottom: '20px', marginLeft: '1%' }}>
-                    <span> <Link to={"/MesArchives"} style={{ display: 'inline-block' }} title="Vue table" ><i class="fas fa-table"></i></Link> </span>
+                    <span> <Link to={"/MesArchives"} style={{ display: 'inline-block' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
                     <span> | </span>
-                    <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block', color: '#F3BD00' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i class="fas fa-eye"></i></Link> </span>
+                    <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block', color: '#F3BD00' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
 
 
                 </div>
@@ -161,8 +161,8 @@ export default class MesArchivesPdf extends React.Component {
                 <div className="col-12">
                     <div className="col-3" style={{ float: "right" }}>
                         <div className="input-group"  >
-                            <input type="search" id="inputrecherche" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                            <button type="button" class="btn btn-outline-primary" onClick={this.rechercher}>Rechercher</button>
+                            <input type="search" id="inputrecherche" className="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <button type="button" className="btn btn-outline-primary" onClick={this.rechercher}>Rechercher</button>
                         </div>
                     </div>
                 </div>

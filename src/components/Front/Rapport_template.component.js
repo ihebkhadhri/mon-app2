@@ -11,6 +11,8 @@ export default class Rapport_template extends React.Component {
     super(props);
     this.onpasse = this.onpasse.bind(this);
     this.selectiontemplate = this.selectiontemplate.bind(this);
+    this.onUnload=this.onUnload.bind(this);
+    
   }
 
 
@@ -20,9 +22,15 @@ export default class Rapport_template extends React.Component {
     idintegration: '62554e665306a2fc8ae06791'
   }
 
+  
+  onUnload = e => {
+    e.preventDefault();
+   alert("aa");
+  };
 
   componentDidMount() {
-
+   
+    window.addEventListener("beforeunload", this.onUnload);
     $(".alert-Div").hide();
     $('#loaderr').hide();
     if (sessionStorage.getItem("Token") == null) {
@@ -169,7 +177,7 @@ export default class Rapport_template extends React.Component {
   render() {
     return (
       <div className="templates">
-         <div class="alert-Div alert alert-warning">
+         <div className="alert-Div alert alert-warning">
           <strong>Warnig!</strong> <span className='alert-warnn'> </span>.
         </div>
         
