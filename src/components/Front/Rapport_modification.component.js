@@ -176,7 +176,7 @@ export default class Rapport_modification extends React.Component {
               if (xhr.status === 200) {
               
       
-       axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + this .state.integration.id)
+       axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + this.state.integration.id)
                     .then(res => {
                       console.log(res.data);
                       this.setState({
@@ -320,7 +320,7 @@ export default class Rapport_modification extends React.Component {
               }
 
               <li>
-              <CanvasSignature/>
+             {/*  <CanvasSignature/> */}
               </li>
             </ul>
        
@@ -333,7 +333,7 @@ export default class Rapport_modification extends React.Component {
     );
   }
 }
-class CanvasSignature extends React.Component {
+/* class CanvasSignature extends React.Component {
   state = {trimmedDataURL: null}
   sigPad = {}
   clear = () => {
@@ -341,14 +341,16 @@ class CanvasSignature extends React.Component {
   }
   
   trim = () => {
+    console.log(this.sigPad.getTrimmedCanvas().toDataURL('image/png'))
     this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
       .toDataURL('image/png')})
       
       let theintegration=JSON.parse(sessionStorage.getItem("integration"));
       console.log(this.state.trimmedDataURL);
-      theintegration.signature = this.state.trimmedDataURL;
+      theintegration.signature = this.sigPad.getTrimmedCanvas().toDataURL('image/png');
       
       let integrationobject = JSON.stringify(theintegration);
+      console.log(integrationobject);
       var xhr = new XMLHttpRequest();
       var json_obj, status = false;
       xhr.open("PUT", 'https://localhost:7103/Integration/EcrireSignature/' + sessionStorage.getItem("idtemplate"), integrationobject.toString(),this.state.trimmedDataURL, false);
@@ -413,5 +415,5 @@ class CanvasSignature extends React.Component {
           src={trimmedDataURL} />
         : null}
     </div>
-  }
-}
+  } 
+}*/
