@@ -238,12 +238,7 @@ export default class Rapport_modification extends React.Component {
 
         <h4 className='titre'>Editer ou modifier le document final, si nécessaire, puis une fois vous terminez, vous pouvez télecharger votre rapport final</h4>
 
-        <div className=" d-flex justify-content-center" style={{ marginBottom: "20px" }}>
-          <div className="progress col-6 ">
-            <div className="progress-bar progress-bar-striped w-75 progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-
-        </div>
+      
 
         <div className="row">
 

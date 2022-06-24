@@ -117,13 +117,13 @@ export default class ArchiveClient extends React.Component {
 
         <h4 className='titre '>Mes Archives</h4>
         <div className='row' style={{ display: 'inline-block', marginBottom: '20px', marginLeft: '1%' }}>
-          <span> <Link to={"/MesArchives"} style={{ display: 'inline-block', color: '#F3BD00' }} title="Vue table" ><i class="fas fa-table"></i></Link> </span>
+          <span> <Link to={"/MesArchives"} style={{ display: 'inline-block', color: 'rgba(0,136,164,1)' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
           <span> | </span>
-          <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i class="fas fa-eye"></i></Link> </span>
+          <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
 
                                 
         </div>
-        <table id="dt" className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%" >
+        <table id="dt" className="table   table-striped table-bordered table-sm" cellSpacing="0" width="100%" >
 
           <thead>
             <tr>
@@ -147,7 +147,7 @@ export default class ArchiveClient extends React.Component {
 
                   <th>
                     <button className="btn-link" onClick={() => this.download(item.id)}><i className="fas fa-download"></i></button>
-                    <button  onClick={() => this.JSalert(item.id)}><i class="fas fa-file-import"></i></button>
+                    <button  onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import"></i></button>
                   <button className="btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
                   </th>
                 </tr>

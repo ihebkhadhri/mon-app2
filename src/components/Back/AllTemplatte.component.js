@@ -97,7 +97,7 @@ export default class AllTemplate extends React.Component {
         return (
             <div className="templates">
                 <h2>Nos Templates</h2>
-                <div class="alert-supprimer alert alert-success">
+                <div className="alert-supprimer alert alert-success">
                     <strong>Success!</strong> Fichier a été supprimé avec succés.
                 </div>
                 <table id="dt" className="table table-striped table-bordered table-sm" cellSpacing="0" width="100%" >
