@@ -90,7 +90,7 @@ export default class NavBarComponent extends React.Component {
 
 
 
-                    <NavLink to={'/Categories'} className="btn btn-primary2 py-4 px-lg-5 d-none d-lg-block"> Génération Rapport <i className="fa fa-arrow-right ms-3"></i> </NavLink>
+                    <NavLink to={'/Categories'} className="btn btn-primary3 py-4 px-lg-5 d-none d-lg-block"> Génération Rapport <i className="fa fa-arrow-right ms-3"></i> </NavLink>
 
 
                 </div>

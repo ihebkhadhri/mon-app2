@@ -98,7 +98,7 @@ export default class Rapport_template extends React.Component {
 
     this.setState({ idtemplate: e.target.id })
     $(".docviewerrr").css("border","none");
-    $('#doc'+e.target.id).css("border","1px solid #F3BD00");
+    $('#doc'+e.target.id).css("border","1px solid rgba(0,136,164,1)");
     $(".alert-Div").hide();
   }
 
@@ -186,12 +186,7 @@ export default class Rapport_template extends React.Component {
         <h4 className='titre'>Ces modèles sont prêts à l’emploi, il ne vous reste alors plus qu’à les compléter et à les adapter selon votre profil</h4>
         <h4 className='titre'> Choisir le modèle qui corresponde le mieux à votre besoin.</h4>
         
-        <div className=" d-flex justify-content-center" style={{ marginBottom: "20px" }}>
-          <div className="progress col-6 ">
-            <div className="progress-bar progress-bar-striped w-50 progress-bar-animated bg-warning" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-
-        </div>
+        
         
         
         <div className="row">

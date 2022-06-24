@@ -153,7 +153,8 @@ export default class MesArchivesPdf extends React.Component {
                 <div className='row' style={{ display: 'inline-block', marginBottom: '20px', marginLeft: '1%' }}>
                     <span> <Link to={"/MesArchives"} style={{ display: 'inline-block' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
                     <span> | </span>
-                    <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block', color: '#F3BD00' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
+                    <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block', color: 'rgba(0,136,164,1)' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
+
 
 
                 </div>

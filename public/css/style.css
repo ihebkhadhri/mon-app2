@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #F3BD00;
+    --primary: rgba(0,136,164,1);
     --secondary: #757575;
     --light: #F3F6F8;
     --dark: #0C2B4B;
@@ -352,20 +352,31 @@
 
  
 .text-primary2{
- color: #F3BD00 !important;   
+ color: rgba(0,136,164,1) !important;   
 }
 
 .btn-primary2{
     color: white !important;
-    background-color: #F3BD00 !important;
-    border-color: #F3BD00 !important;
+    background-color: rgba(0,136,164,1) !important;
+    border-color: rgba(0,136,164,1) !important;
 }
 
 .bg-primary2{
-    background-color: #F3BD00 !important;   
+    background-color: rgba(0,136,164,1) !important;   
 }
 
 .titre{
     text-align: center;
     font-family: "Tahoma ";
-} 
+}
+
+.progress-bar-striped{
+    background-color: rgba(0,136,164,1); 
+}
+
+.btn-primary3{
+    color: white !important;
+    background-color: rgba(87,193,165,1) !important;
+    border-color: rgba(87,193,165,1) !important;
+}
+

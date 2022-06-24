@@ -80,7 +80,7 @@ export default class Authentification extends React.Component {
       <div className="row g-4 justify-content-center">
         <div className="col-lg-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
           <div className="bg-primary2 text-center p-5">
-            <h1 className="mb-4">Se Connecter</h1>
+            <h1 style={{ color:'white' }} className="mb-4">Accéder à votre espace</h1>
             <form>
               <div className="row g-3">
 
@@ -100,11 +100,11 @@ export default class Authentification extends React.Component {
                 </div>
                 <div className="col-12">
 
-                  <input type="button" onClick={this.onSubmit} className="btn btn-dark w-100 py-3" value="Log In" />
+                  <input type="button" onClick={this.onSubmit} className="btn btn-primary3 w-100 py-3" value="Se Connecter" />
                   <div><br></br></div>
-                  <button className="btn btn-dark w-100 py-3">
-                    <Link to={"/inscription"} className="nav-link"><p >S'inscrire</p> </Link>
-                  </button>
+                  
+                   <span style={{ color : 'white' }}>Vous n'avez pas encore un compte? </span> <Link to={"/inscription"} className=" w-100 py-3" style={{ color:'#ff7a59' }}><b >S'inscrire</b> </Link>
+                 
                   <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
 
                 </div>

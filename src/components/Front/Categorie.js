@@ -102,17 +102,11 @@ if(this.state.filex==null){
         <h4 className='titre'>Image conversion prend habituellement quelques secondes. Convertir xml à pdf très rapidement.</h4>
         <h4 className='titre'>Il suffit à déposer vos fichiers xml sur la page et choisir la catégorie pour convertir pdf.</h4>
 
-        <div className=" d-flex justify-content-center" style={{ marginBottom: "20px" }}>
-          <div className="progress col-6 ">
-            <div className="progress-bar progress-bar-striped w-25 progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-
-        </div>
-
-        <div className="row g-4 justify-content-center">
+        
+        <div className="row g-4 justify-content-center" style={{ marginTop:'20px' }}>
           <div className="col-lg-5 my-6 mb-0 wow fadeInUp" data-wow-delay="0.1s">
             <div className="bg-primary2 text-center p-5">
-              <h1 className="mb-4">sélectionnez un fichier xml que vous souhaitez convertir</h1>
+              <h1 className="mb-4" style={{ color:'white' }}>sélectionnez un fichier xml que vous souhaitez convertir</h1>
               <form>
                 <div className="row g-3">
 
@@ -126,7 +120,7 @@ if(this.state.filex==null){
                   </div>
                   <div className="col-12">
                     <div >
-                      <label htmlFor="cage" style={{ color: 'gray' }}> Sélectionner Catégorie</label>
+                      <label htmlFor="cage" style={{ color: 'white' }}> Sélectionner Catégorie</label>
                       <select onChange={this.changeCategorie} className="form-control border-0 form-control form-control-warning">
                         <option value="0" style={{ textAlign: 'center' }}> --catégories--</option>
                         {this.state.categories.map(categorie => <option value={categorie.id} >{categorie.libelle}</option>)}
@@ -136,7 +130,7 @@ if(this.state.filex==null){
                   </div>
                   <div className="col-12">
 
-                    <input type="button" className="btn btn-dark w-100 py-3" value="upload" onClick={this.importFile} />
+                    <input type="button" className="btn btn-dark w-100 py-3" value="Charger" onClick={this.importFile} />
 
                   </div>
                 </div>
