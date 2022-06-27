@@ -29,6 +29,7 @@ export default class Categorie extends React.Component {
   }
 
   changeCategorie(event) {
+    $(".alert-Div").slideUp();
     $('option[value="0"]').attr("disabled", "disabled");
     this.setState({ categorie_selected: event.target.value });
 
@@ -37,7 +38,7 @@ export default class Categorie extends React.Component {
 
 
   saveFileSelected(e) {
-
+    $(".alert-Div").slideUp();
     console.log(e.target.files[0]);
 
     this.setState({
@@ -53,7 +54,7 @@ export default class Categorie extends React.Component {
     if(this.state.categorie_selected==""){
       $(".alert-Div").slideDown(2000);
       $(".alert-warnn").html("Vous devez sélectionner une catégorie");
-      $(".alert-Div").slideUp(10000);
+     
       return;
     }
 
@@ -78,6 +79,8 @@ if(this.state.filex==null){
   };
 
   componentDidMount() {
+
+    sessionStorage.removeItem("Categorie");
 
     $(".alert-Div").hide();
 

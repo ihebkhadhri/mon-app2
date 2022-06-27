@@ -70,17 +70,7 @@ export default class Inscription extends Component {
 
     UserService.createUser(user)
       .then(response => {
-        this.setState({
-          id: response.user.id,
-          username: response.user.username,
-          password: response.user.password,
-          email: response.user.email,
-          firstName: response.user.firstName,
-          lastName: response.user.lastName,
-          userRole: response.user.userRole
-
-        });
-        console.log(response.user);
+        
         window.location.href="/Authentification";
 
 
