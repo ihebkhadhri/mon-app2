@@ -201,18 +201,24 @@ export default class Rapport_template extends React.Component {
           {this.state.docs.map(doc =>
             <div className="col-12 col-lg-4  text-center">
               <DocViewer
-                className="docviewerrr"
+              theme={{
+                primary: "rgba(0,136,164,1)",
+               
+               
+                
+              }}
+                className="docviewerrr "
                 id={'doc' + doc[0].id}
                 pluginRenderers={DocViewerRenderers}
                 documents={doc}
                 config={{
                   header: {
-                    disableHeader: false,
+                    disableHeader: true,
                     disableFileName: true,
                     retainURLParams: false
                   }
                 }}
-                style={{ height: 500 }}
+                style={{ height: 500, marginTop:'5%' }}
               />
               <button className="btn-primary2 " style={{ marginTop: "30px", marginBottom: "30px" }} onClick={this.selectiontemplate} id={doc[0].id} > Sélectionner</button>
             </div>

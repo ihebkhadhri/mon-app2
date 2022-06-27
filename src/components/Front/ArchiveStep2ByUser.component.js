@@ -17,6 +17,7 @@ export default class ArchiveStep2ByUser extends React.Component {
         this.JSalert = this.JSalert.bind(this);
         this.downloadinput = this.downloadinput.bind(this);
         this.downloaRtf = this.downloaRtf.bind(this);
+        this.suivant = this.suivant.bind(this);
 
     }
 
@@ -55,6 +56,12 @@ export default class ArchiveStep2ByUser extends React.Component {
                 }
             });
     }
+
+    suivant(idIntegration,idtemplate) {
+        sessionStorage.setItem("idtemplate", idtemplate);
+        window.location.href = "/Rapport/" + idIntegration;
+    }
+
 
     extraire(id) {
         axios.get(`https://localhost:7103/Archive/getidinputfilefromintegration/` + id)
@@ -175,15 +182,16 @@ export default class ArchiveStep2ByUser extends React.Component {
                                     <th>{item.id}.pdf</th>
                                     <th>{item.template.categorie.libelle}</th>
                                     <th>{item.userImport.username}</th>
-                                    <th>{   new Date( item.created).toLocaleDateString()      }  {   new Date( item.created).toLocaleTimeString()      } </th>
+                                    <th>{new Date(item.created).toLocaleDateString()}  {new Date(item.created).toLocaleTimeString()} </th>
 
                                     <th>
                                         <div className='d-flex justify-content-center col-12'>
-                                        <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word"></i></button>
-                                            <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf"></i></button>
-                                            <button title="Extraire data" className="btn btn-link" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import"></i></button>
+                                            <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word" style={{ color: "brown" }}></i></button>
+                                            <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
+                                            <button title="Extraire data" className="btn btn-link" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
                                             <button title="Supprimer archive" className="btn btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
-                                            
+                                            <button title="Continuer l'archivage" className="btn btn-link" onClick={() => this.suivant(item.id,item.template.id)}><i className="fas fa-arrow-alt-circle-right" style={{ color: "green" }}></i></button>
+
                                         </div>
                                     </th>
                                 </tr>
