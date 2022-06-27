@@ -55,7 +55,7 @@ export default class NavBarComponent extends React.Component {
 
                                 
                                     <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 1 </NavLink>
-                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 2 </NavLink>
+                                    <NavLink to={'/archivestep2user'} className="dropdown-item"> Etape 2 </NavLink>
                                     <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 3 </NavLink> 
 
                             

@@ -87,7 +87,10 @@ export default class ArchiveClient extends React.Component {
         axios.get(`https://localhost:7103/Archive/Downloadarchive/`+id)
         .then(res => { let pdfWindow = window.open("")
       
-
+        pdfWindow.document.write(
+          "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+          encodeURI(res.data) + "'></iframe>"
+        )
 
       }
       )

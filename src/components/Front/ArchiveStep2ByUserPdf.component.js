@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import '../../../src/SpinnerLoader.css'
 import $ from 'jquery'
 
-export default class MesArchivesPdf extends React.Component {
+export default class ArchiveStep2ByUserPdf extends React.Component {
     constructor(props) {
         super(props);
         this.rechercher = this.rechercher.bind(this);
@@ -33,9 +33,9 @@ export default class MesArchivesPdf extends React.Component {
 
 
 
-        let urlrecherche = "https://localhost:7103/Archive/MesArchivesPdf/";
+        let urlrecherche = "https://localhost:7103/Archive/MesArchivesPdf/2";
         if (document.getElementById("inputrecherche").value != "")
-            urlrecherche = "https://localhost:7103/Archive/MesArchivesPdfFiltrer/" + document.getElementById("inputrecherche").value;
+            urlrecherche = "https://localhost:7103/Archive/MesArchivesPdfFiltrer/" + document.getElementById("inputrecherche").value+"/2";
 
         axios.get(urlrecherche)
             .then(res => {
@@ -91,7 +91,7 @@ export default class MesArchivesPdf extends React.Component {
 
 
 
-        axios.get("https://localhost:7103/Archive/MesArchivesPdf/")
+        axios.get("https://localhost:7103/Archive/MesArchivesPdf/2")
             .then(res => {
 
 
@@ -151,9 +151,9 @@ export default class MesArchivesPdf extends React.Component {
 
                 <h4 className='titre '>Mes Archives</h4>
                 <div className='row' style={{ display: 'inline-block', marginBottom: '20px', marginLeft: '1%' }}>
-                    <span> <Link to={"/MesArchives"} style={{ display: 'inline-block' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
+                    <span> <Link to={"/archivestep2user"} style={{ display: 'inline-block' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
                     <span> | </span>
-                    <span> <Link to={"/MesArchivesPdf"} style={{ display: 'inline-block', color: 'rgba(0,136,164,1)' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
+                    <span> <Link to={"/archivestep2pdfuser"} style={{ display: 'inline-block', color: 'rgba(0,136,164,1)' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
 
 
 
