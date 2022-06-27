@@ -50,13 +50,15 @@ export default class NavBarComponent extends React.Component {
 
 
                         <div className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes archives</a>
+                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Workflow</a>
                             <div className="dropdown-menu bg-light m-0">
 
-                                {this.state.categories.map(categorie =>
-                                    <NavLink to={'/MesArchives'} className="dropdown-item"> {categorie.libelle} </NavLink>
+                                
+                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 1 </NavLink>
+                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 2 </NavLink>
+                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 3 </NavLink> 
 
-                                )}
+                            
 
                             </div>
                         </div>
