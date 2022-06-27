@@ -330,9 +330,7 @@ export default class Rapport_modification extends React.Component {
                   null
               }
 
-              <li>
-              <App/>
-              </li>
+              
             </ul>
        
   

@@ -15,6 +15,7 @@ import Accueil from '../Front/Accueil.component';
 import $ from 'jquery'
 import ArchiveClient from '../Front/ArchiveClient';
 import MesArchivesPdf from '../Front/MesArchivesPdf.component';
+import Reimportfile from '../Front/Reimportfile.component';
 
 
 export default class HeaderFront extends React.Component {
@@ -55,6 +56,7 @@ export default class HeaderFront extends React.Component {
                                                     <Route exact path='/Rapport/:id' element={< Rapport_modification />}></Route>
                                                     <Route exact path='/MesArchives' element={< ArchiveClient />}></Route>
                                                     <Route exact path='/MesArchivesPdf' element={< MesArchivesPdf />}></Route>
+                                                    <Route exact path='/Reimportfile' element={< Reimportfile />}></Route>
 
 
                                                     <Route exact path='/' element={< Accueil />}></Route>

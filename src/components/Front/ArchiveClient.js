@@ -42,7 +42,7 @@ export default class ArchiveClient extends React.Component {
           switch (value) {
          
             case "extraire":
-              swal("Pikachu fainted! You gained 500 XP!");
+              this.extraire(id);
               break;
          
             case "Telecharger":
@@ -53,6 +53,16 @@ export default class ArchiveClient extends React.Component {
               swal("Got away safely!");
           }
         });
+      }
+
+      extraire(id){
+        axios.get(`https://localhost:7103/Archive/getidinputfilefromintegration/`+id)
+        .then(res => { 
+         sessionStorage.setItem("idinputfile",res.data);
+          
+          window.location.href = "/Reimportfile";
+         
+        })
       }
 
       downloadinput(id){

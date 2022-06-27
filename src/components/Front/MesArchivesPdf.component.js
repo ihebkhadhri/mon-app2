@@ -161,7 +161,7 @@ export default class MesArchivesPdf extends React.Component {
                 <div className="col-12">
                     <div className="col-3" style={{ float: "right" }}>
                         <div className="input-group"  >
-                            <input type="search" id="inputrecherche" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <input type="search" id="inputrecherche" class="form-control rounded" onKeyUp={this.rechercher} placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                             <button type="button" class="btn btn-outline-primary" onClick={this.rechercher}>Rechercher</button>
                         </div>
                     </div>
