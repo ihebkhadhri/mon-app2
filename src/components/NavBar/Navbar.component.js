@@ -41,47 +41,60 @@ export default class NavBarComponent extends React.Component {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <div className="navbar-nav ms-auto p-4 p-lg-0">
-                        <a href="index.html" className="nav-item nav-link active">Home</a>
-                        <a href="about.html" className="nav-item nav-link">About</a>
-                        <a href="courses.html" className="nav-item nav-link">Courses</a>
-                        <div className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div className="dropdown-menu bg-light m-0">
-                                <a href="feature.html" className="dropdown-item">Features</a>
-                                <a href="appointment.html" className="dropdown-item">Appointment</a>
-                                <a href="team.html" className="dropdown-item">Our Team</a>
-                                <a href="testimonial.html" className="dropdown-item">Testimonial</a>
-                                <a href="404.html" className="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" className="nav-item nav-link">Contact</a>
+                        <NavLink to={'/'} className="nav-item nav-link"> Accueil </NavLink>
+
+
+                        <NavLink to={'/apropos'} className="nav-item nav-link"> A Propos </NavLink>
+
+                        <NavLink to={'/Contact'} className="nav-item nav-link"> Contacts </NavLink>
 
 
                         <div className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes archives</a>
+                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Workflow</a>
                             <div className="dropdown-menu bg-light m-0">
 
-                                {this.state.categories.map(categorie =>
-                                    <NavLink to={'/MesArchives'} className="dropdown-item"> {categorie.libelle} </NavLink>
+                                
+                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 1 </NavLink>
+                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 2 </NavLink>
+                                    <NavLink to={'/MesArchives'} className="dropdown-item"> Etape 3 </NavLink> 
 
-                                )}
+                            
 
                             </div>
                         </div>
 
-                        <div className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Connexion</a>
-                            <div className="dropdown-menu bg-light m-0">
-                                <NavLink to={'/Authentification'} className="dropdown-item"> Se connecter </NavLink>
-                                <NavLink to={'/inscription'} className="dropdown-item"> S'inscrire </NavLink>
+                        {sessionStorage.getItem("Token") != null ?
+                            <NavLink to={'/profil'} className="nav-item nav-link"> Profil </NavLink>
+                            :
+                            <NavLink to={'/profil'} style={{ display:'none' }} className="nav-item nav-link"> Profil </NavLink>
+                        }
 
+
+
+                        {sessionStorage.getItem("Token") == null ?
+
+                            <div className="nav-item dropdown">
+                                <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Connexion</a>
+                                <div className="dropdown-menu bg-light m-0">
+                                    <NavLink to={'/Authentification'} className="dropdown-item"> Se connecter </NavLink>
+                                    <NavLink to={'/inscription'} className="dropdown-item"> S'inscrire </NavLink>
+
+                                </div>
                             </div>
-                        </div>
 
+                            :
+                            <NavLink to={'/Authentification'} className="nav-item nav-link"> Déconnexion </NavLink>
+
+
+                        }
 
                     </div>
 
-                    <a href="/Categories" className="btn btn-primary2 py-4 px-lg-5 d-none d-lg-block">Get Started<i className="fa fa-arrow-right ms-3"></i></a>
+
+
+                    <NavLink to={'/Categories'} className="btn btn-primary3 py-4 px-lg-5 d-none d-lg-block"> Génération Rapport <i className="fa fa-arrow-right ms-3"></i> </NavLink>
+
+
                 </div>
             </nav>
 
