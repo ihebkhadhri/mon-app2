@@ -16,6 +16,7 @@ export default class ArchiveClient extends React.Component {
         this.delete = this.delete.bind(this);
         this.JSalert=this.JSalert.bind(this);
         this.downloadinput=this.downloadinput.bind(this);
+        this.downloaRtf=this.downloaRtf.bind(this);
         
     }
 
@@ -75,15 +76,29 @@ export default class ArchiveClient extends React.Component {
       download(id){
         axios.get(`https://localhost:7103/Archive/Downloadarchive/`+id)
         .then(res => { let pdfWindow = window.open("")
-        pdfWindow.document.write(
-          "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
-          encodeURI(res.data) + "'></iframe>"
-        )
+      
 
 
       }
       )
   }
+  downloaRtf(id){
+    axios.get(`https://localhost:7103/Template/DownloadTemplateMappee/`+id)
+    .then(res => { 
+
+      console.log(res.data);
+      const url = 'data:xml;base64,'+ encodeURI(res.data);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'template.rtf'); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+     document.body.removeChild(link);
+   
+  }
+    )
+}
+
 
 
   delete(id) {
@@ -146,9 +161,10 @@ export default class ArchiveClient extends React.Component {
                   <th>{item.created}</th>
 
                   <th>
-                    <button className="btn-link" onClick={() => this.download(item.id)}><i className="fas fa-download"></i></button>
-                    <button  onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import"></i></button>
-                  <button className="btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                    <button title="Download Pdf version" className="btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf"></i></button>
+                    <button title="Extraire data" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import"></i></button>
+                  <button title="Supprimer archive"className="btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                  <button title="Download Word version" className="btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word"></i></button>
                   </th>
                 </tr>
               )
