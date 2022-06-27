@@ -39,7 +39,7 @@ export default class Categorie extends React.Component {
 
   saveFileSelected(e) {
     $(".alert-Div").slideUp();
-    console.log(e.target.files[0]);
+    
 
     this.setState({
       filex: e.target.files[0]
@@ -51,6 +51,14 @@ export default class Categorie extends React.Component {
 
 
   importFile = (e) => {
+  
+    if(this.state.filex==null){
+      $(".alert-Div").slideDown(2000);
+      $(".alert-warnn").html("Vous devez sélectionner un fichier");
+    
+      return
+    }
+
     if(this.state.categorie_selected==""){
       $(".alert-Div").slideDown(2000);
       $(".alert-warnn").html("Vous devez sélectionner une catégorie");
@@ -58,12 +66,7 @@ export default class Categorie extends React.Component {
       return;
     }
 
-if(this.state.filex==null){
-  $(".alert-Div").slideDown(2000);
-  $(".alert-warnn").html("Vous devez sélectionner un fichier");
-  $(".alert-Div").slideUp(10000);
-  return
-}
+
 
     const formData = new FormData();
     formData.append("file", this.state.filex);
