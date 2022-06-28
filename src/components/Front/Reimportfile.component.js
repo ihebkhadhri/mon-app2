@@ -51,7 +51,7 @@ export default class Reimportfile extends React.Component {
 
    
     try {
-      const res = axios.post("https://localhost:7103/Integration/AddIntegrationbyidxmlfile/"+sessionStorage.getItem("idinputfile")).then(res => {
+      const res = axios.post("https://localhost:7103/Integration/AddIntegrationbyidxmlfile/"+sessionStorage.getItem("idinputfile")+"/"+this.state.categorie_selected).then(res => {
         sessionStorage.setItem("Categorie", this.state.categorie_selected);
         console.log(res.data);
         window.location.href = "/Templates/" + res.data;
