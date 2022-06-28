@@ -84,12 +84,13 @@ export default class AdminControlSteps extends React.Component {
                                         integration => 
                                         <tr>
                                             <td>{integration.userImport.username}</td>
-                                             <td>{integration.template.categorie.libelle}  </td>   
+                                             <td>{integration.categorie.libelle}  </td>   
                                              <td>{new Date(integration.created).toLocaleDateString()}  {new Date(integration.created).toLocaleTimeString()} </td>
                                              <td>
-                                             <button style={{marginLeft: "10px"}} onClick={ () => this.downloadinput(integration.id)} className="btn btn-success">extraire </button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.delete(integration.id)} className="btn btn-success">Delete </button>
-                                                 
+                                             <div className='d-flex justify-content-center col-12'>
+                                             <button style={{marginLeft: "10px"}} onClick={ () => this.downloadinput(integration.id)} className="btn btn-link"><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
+                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.delete(integration.id)} className="btn btn-link"><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                                                 </div>
                                              </td>
                                         </tr>
                                           )
