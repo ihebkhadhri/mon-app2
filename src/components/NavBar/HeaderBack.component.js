@@ -212,7 +212,7 @@ export default class HeaderBack extends React.Component {
                                             <ul className="pcoded-submenu">
 
                                                 <li className="">
-                                                    <NavLink to={'/AdminControlSteps'} >
+                                                    <NavLink to={'/AdminStep1'} >
 
                                                         <span className="pcoded-micon"><i className="feather icon-image"></i></span>
                                                         <span className="pcoded-mtext">Etape 1</span>
@@ -228,7 +228,7 @@ export default class HeaderBack extends React.Component {
                                                     </NavLink>
                                                 </li>
                                                 <li className="">
-                                                    <NavLink to={'/'} >
+                                                    <NavLink to={'/AdminStep3'} >
 
                                                         <span className="pcoded-micon"><i className="feather icon-image"></i></span>
                                                         <span className="pcoded-mtext">Etape 3</span>
@@ -362,12 +362,12 @@ export default class HeaderBack extends React.Component {
                                                     <Route exact path='/Authentification' element={< Authentification />}></Route>
                                                     <Route exact path='/ListUser' element={< ListUser />}></Route>
                                                     
-                                                    <Route exact path='/AdminControlSteps' element={< AdminControlSteps />}></Route>
                                                     <Route exact path='/AddTemplate' element={< AddTemplate />}></Route>
                                                     <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>
                                                     <Route exact path='/AllArchives' element={< ArchiveAdmin />}></Route>
                                                     <Route exact path='/Corilusgroups' element={< Validategroup />}></Route>
 
+                                                    <Route exact path='/AdminStep1' element={< AdminControlSteps />}></Route>                                       
                                                     <Route exact path='/AdminStep3' element={< ArchiveStep3Admin  />}></Route>
 
                                                 </Routes>
