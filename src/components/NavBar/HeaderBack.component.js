@@ -20,7 +20,7 @@ import ArchiveAdmin from '../Back/ArchiveAdmin.component';
 import Validategroup from '../Back/Validategroup.component';
 import ListUser from "../../components/Back/ListUsers.component";
 import AdminControlSteps from "../../components/Back/AdminControlSteps";
-
+import ArchiveStep3Admin from "../../components/Back/ArchiveStep3Admin.component"
 export default class HeaderBack extends React.Component {
 
 
@@ -156,11 +156,51 @@ export default class HeaderBack extends React.Component {
                                             </a>
 
                                         </li>
-                                        <li className="">
-                                            <NavLink to={'/AllArchives'} >
-                                                <span className="pcoded-micon"><i className="feather icon-sidebar"></i></span>
-                                                <span className="pcoded-mtext">Archives</span>
-                                            </NavLink>
+
+
+
+
+
+
+                                        <li className="pcoded-hasmenu">
+                                            <a href="javascript:void(0)">
+                                                <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                <span className="pcoded-mtext">Workflow</span>
+
+                                            </a>
+                                            <ul className="pcoded-submenu">
+
+                                                <li className="">
+                                                    <NavLink to={'/adminstep1'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Etape 1</span>
+                                                    </NavLink>
+                                                </li>
+
+                                                <li className="">
+                                                    <NavLink to={'/adminstep2'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Etape 2</span>
+                                                    </NavLink>
+                                                </li>
+
+                                                <li className="">
+                                                    <NavLink to={'/adminstep3'} >
+
+                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
+                                                        <span className="pcoded-mtext">Etape 3</span>
+                                                    </NavLink>
+                                                </li>
+
+
+
+
+
+
+
+                                            </ul>
                                         </li>
                                        
                                         <li className="pcoded-hasmenu">
@@ -209,7 +249,7 @@ export default class HeaderBack extends React.Component {
                                             <a href="javascript:void(0)">
                                                 <span className="pcoded-micon"><i className="feather icon-image"></i></span>
                                                 <span className="pcoded-mtext">Template</span>
-                                                
+
                                             </a>
                                             <ul className="pcoded-submenu">
 
@@ -231,7 +271,7 @@ export default class HeaderBack extends React.Component {
                                                 </li>
 
 
-                                              
+
 
                                             </ul>
                                         </li>
@@ -244,7 +284,7 @@ export default class HeaderBack extends React.Component {
                                             <a href="javascript:void(0)">
                                                 <span className="pcoded-micon"><i className="feather icon-users"></i></span>
                                                 <span className="pcoded-mtext">Profiles</span>
-                                                
+
                                             </a>
                                             <ul className="pcoded-submenu">
 
@@ -266,7 +306,7 @@ export default class HeaderBack extends React.Component {
                                                 </li>
 
 
-                                              
+
 
                                             </ul>
                                         </li>
@@ -327,6 +367,8 @@ export default class HeaderBack extends React.Component {
                                                     <Route exact path='/AllTemplate' element={< AllTemplate />}></Route>
                                                     <Route exact path='/AllArchives' element={< ArchiveAdmin />}></Route>
                                                     <Route exact path='/Corilusgroups' element={< Validategroup />}></Route>
+
+                                                    <Route exact path='/AdminStep3' element={< ArchiveStep3Admin  />}></Route>
 
                                                 </Routes>
                                             </div>
