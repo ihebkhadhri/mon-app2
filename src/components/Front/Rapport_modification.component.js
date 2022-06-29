@@ -24,6 +24,7 @@ export default class Rapport_modification extends React.Component {
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
     this.terminer = this.terminer.bind(this);
+    this.onprecedent = this.onprecedent.bind(this);
 
 
     if (sessionStorage.getItem("Token") == null) {
@@ -225,7 +226,7 @@ export default class Rapport_modification extends React.Component {
     axios.get(`https://localhost:7103/Integration/decrementetat/` + this.state.integration.id)
     .then(res => {
         
-        window.location.href = "/Template/"+this.state.integration.id;
+        window.location.href = "/Templates/"+this.state.integration.id;
 
     })
   }
