@@ -4,10 +4,8 @@ import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Rapport_modification.component.css';
-import SignaturePad from 'react-signature-canvas'
 import { NavLink } from 'react-router-dom';
 
-import styles from './styles.module.css'
 var columns = document.querySelectorAll('.donnes');
 var draggingClass = 'dragging';
 var dragSource;
@@ -77,23 +75,23 @@ export default class Rapport_modification extends React.Component {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           var json_obj = JSON.parse(xhr.responseText);
-          sessionStorage.setItem("integration",JSON.stringify(json_obj));
+        
           status = true;
           this.setState({ integration: json_obj });
-           
+           console.log(this.state.integration);
         } else {
           console.error(xhr.statusText);
         }
       }
     }.bind(this);
     xhr.onerror = function (e) {
-      console.error(xhr.statusText); 
+     
     };
     xhr.send(null);
 
     axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + idi)
       .then(res => {
-        console.log(res.data);
+       
         this.setState({
           docs: [
             {
@@ -113,8 +111,7 @@ export default class Rapport_modification extends React.Component {
 
 
   handleDragStart(evt) {
-    console.log("1")
-    console.log(evt.dataTransfer.getData)
+   
 
     dragSource = evt.target;
     evt.target.classList.add(draggingClass);
@@ -123,24 +120,23 @@ export default class Rapport_modification extends React.Component {
   }
 
   handleDragOver(evt) {
-    console.log("2")
+   
     evt.dataTransfer.dropEffect = 'move';
     evt.preventDefault();
   }
 
   handleDragEnter(evt) {
-    console.log("3")
+   
     evt.target.classList.add('over');
   }
 
   handleDragLeave(evt) {
-    console.log("4")
+   
     evt.target.classList.remove('over');
   }
 
   handleDrop(evt) {
-    console.log(this.state.integration.age);
-    console.log("5")
+   
     evt.stopPropagation();
 
     if (dragSource !== evt.target) {
@@ -155,7 +151,7 @@ export default class Rapport_modification extends React.Component {
       this.state.integration.dateNaissance = document.getElementById("dateNaissance").innerHTML;
       this.state.integration.nationalite = document.getElementById("nationalite").innerHTML;
 
-      console.log(this.state.integration.age);
+    
 
 
 
@@ -178,7 +174,7 @@ export default class Rapport_modification extends React.Component {
       
        axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + this.state.integration.id)
                     .then(res => {
-                      console.log(res.data);
+                     
                       this.setState({
                         docs: [
                           {
@@ -221,14 +217,17 @@ export default class Rapport_modification extends React.Component {
   }
 
   handleDragEnd(evt) {
-    console.log("6")
+   
     Array.prototype.forEach.call(columns, function (col) {
       ['over', 'dragging'].forEach(function (className) {
         col.classList.remove(className);
       });
     });
   }
-
+  onprecedent(e){
+  
+        window.location.href="/"
+  }
 
 
 
@@ -238,7 +237,12 @@ export default class Rapport_modification extends React.Component {
 
         <h4 className='titre'>Editer ou modifier le document final, si nécessaire, puis une fois vous terminez, vous pouvez télecharger votre rapport final</h4>
 
-      
+        <div className=" d-flex justify-content-center" style={{ marginBottom: "20px" }}>
+          <div className="progress col-6 ">
+            <div className="progress-bar progress-bar-striped w-75 progress-bar-animated bg-warning" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+
+        </div>
 
         <div className="row">
 
@@ -278,7 +282,7 @@ export default class Rapport_modification extends React.Component {
               {
                 this.state.integration.titres != null ?
                   this.state.integration.titres.map((p) => <li >{p.libelle} <ul>
-                    {p.sous_titres.map((soustitre) => <li >{soustitre.libelle}</li>)}
+                    {p.sous_titres.map((soustitre) => <li id="soustitre" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{soustitre.titres}</li>)}
                   </ul>
                   </li>
                   )
@@ -290,7 +294,7 @@ export default class Rapport_modification extends React.Component {
               {
                 this.state.integration.paragraphes != null ?
                   this.state.integration.paragraphes.map((p) => <li >{p.libelle} <ul>
-                    {p.sous_paragraphe.map((sousparagraphe) => <li >{sousparagraphe.libelle}</li>)}
+                    {p.sous_paragraphe.map((sousparagraphe) => <li id="sousparagraphe" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{sousparagraphe.libelle}</li>)}
                   </ul>
                   </li>
                   )
@@ -321,6 +325,17 @@ export default class Rapport_modification extends React.Component {
        
   
    
+          </div>
+          <div class="d-flex justify-content-center col-12">
+
+          <div className="" style={{ marginRight:"2%" }}>
+            <button className="d-inline-flex align-items-center btn-primary3 btn btn-outline-primary border-2 p-2"  onClick={this.onprecedent}>
+              <span className="flex-shrink-0 ">
+                <i class="fas fa-arrow-alt-circle-left"></i>
+              </span>
+              <span className="px-3">Précédent</span>
+            </button>
+          </div>
           </div>
 
         </div>
