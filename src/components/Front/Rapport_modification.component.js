@@ -222,7 +222,12 @@ export default class Rapport_modification extends React.Component {
   }
   onprecedent(e){
   
-        window.location.href="/"
+    axios.get(`https://localhost:7103/Integration/decrementetat/` + this.state.integration.id)
+    .then(res => {
+        
+        window.location.href = "/Template/"+this.state.integration.id;
+
+    })
   }
 
 
