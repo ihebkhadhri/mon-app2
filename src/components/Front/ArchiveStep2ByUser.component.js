@@ -59,7 +59,11 @@ export default class ArchiveStep2ByUser extends React.Component {
     }
 
     precedent(idIntegration){
-        window.location.href = "/Templates/" + idIntegration;
+        axios.get(`https://localhost:7103/Integration/decrementetat/`+ idIntegration) .then(res5 => {
+    
+        window.location.reload();
+
+    })
     }
 
     suivant(idIntegration,idtemplate) {
