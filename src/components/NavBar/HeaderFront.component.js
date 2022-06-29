@@ -20,6 +20,7 @@ import ArchiveStep2ByUserPdf from '../Front/ArchiveStep2ByUserPdf.component';
 import ArchiveStep2ByUser from '../Front/ArchiveStep2ByUser.component';
 import ArchiveStep1ByUser from '../Front/ArchiveStep1ByUser.component';
 
+import ArchiveStep3ByUser from '../Front/ArchiveStep3ByUser.component';
 
 export default class HeaderFront extends React.Component {
 
@@ -51,7 +52,9 @@ export default class HeaderFront extends React.Component {
 
                                                 
                                             <Routes>
+                                            
                                                     <Route exact path='/Templates/:id' element={< Rapport_template />}></Route>
+                                                    <Route exact path='/ArchiveStep3ByUser' element={< ArchiveStep3ByUser />}></Route>
                                                     <Route exact path='/inscription' element={< Inscription />}></Route>
                                                     <Route exact path='/Authentification' element={< Authentification />}></Route>
                                                     <Route exact path='/Templates' element={< Rapport_template />}></Route>
