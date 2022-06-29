@@ -162,46 +162,7 @@ export default class HeaderBack extends React.Component {
 
 
 
-                                        <li className="pcoded-hasmenu">
-                                            <a href="javascript:void(0)">
-                                                <span className="pcoded-micon"><i className="feather icon-image"></i></span>
-                                                <span className="pcoded-mtext">Workflow</span>
-
-                                            </a>
-                                            <ul className="pcoded-submenu">
-
-                                                <li className="">
-                                                    <NavLink to={'/adminstep1'} >
-
-                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
-                                                        <span className="pcoded-mtext">Etape 1</span>
-                                                    </NavLink>
-                                                </li>
-
-                                                <li className="">
-                                                    <NavLink to={'/adminstep2'} >
-
-                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
-                                                        <span className="pcoded-mtext">Etape 2</span>
-                                                    </NavLink>
-                                                </li>
-
-                                                <li className="">
-                                                    <NavLink to={'/adminstep3'} >
-
-                                                        <span className="pcoded-micon"><i className="feather icon-image"></i></span>
-                                                        <span className="pcoded-mtext">Etape 3</span>
-                                                    </NavLink>
-                                                </li>
-
-
-
-
-
-
-
-                                            </ul>
-                                        </li>
+                                        
                                        
                                         <li className="pcoded-hasmenu">
                                             <a href="javascript:void(0)">
