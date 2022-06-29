@@ -17,6 +17,7 @@ export default class ArchiveStep2Admin extends React.Component {
        
         this.downloadinput = this.downloadinput.bind(this);
         this.downloaRtf = this.downloaRtf.bind(this);
+        this.precedent = this.precedent.bind(this);
        
 
     }
@@ -109,6 +110,14 @@ export default class ArchiveStep2Admin extends React.Component {
 
     }
 
+    precedent(idIntegration){
+        axios.get(`https://localhost:7103/Integration/decrementetat/`+ idIntegration) .then(res5 => {
+    
+        window.location.reload();
+
+    })
+}
+
     render() {
         return (
             <div className="archives">
@@ -141,6 +150,7 @@ export default class ArchiveStep2Admin extends React.Component {
 
                                     <th>
                                         <div className='d-flex justify-content-center col-12'>
+                                        <button title="précedent" className="btn btn-link" onClick={() => this.precedent(item.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "red" }}></i></button>
                                             <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word" style={{ color: "brown" }}></i></button>
                                             <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.downloadinput(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
