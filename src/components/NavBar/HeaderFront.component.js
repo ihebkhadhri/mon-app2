@@ -18,6 +18,7 @@ import ArchiveClient from '../Front/ArchiveClient';
 import Reimportfile from '../Front/Reimportfile.component';
 import ArchiveStep2ByUserPdf from '../Front/ArchiveStep2ByUserPdf.component';
 import ArchiveStep2ByUser from '../Front/ArchiveStep2ByUser.component';
+import ArchiveStep1ByUser from '../Front/ArchiveStep1ByUser.component';
 
 
 export default class HeaderFront extends React.Component {
@@ -58,7 +59,9 @@ export default class HeaderFront extends React.Component {
                                                     <Route exact path='/Rapport/:id' element={< Rapport_modification />}></Route>
                                                     <Route exact path='/archivestep2user' element={< ArchiveStep2ByUser />}></Route>
                                                     <Route exact path='/archivestep2pdfuser' element={< ArchiveStep2ByUserPdf />}></Route>
+                                                    
                                                     <Route exact path='/Reimportfile' element={< Reimportfile />}></Route>
+                                                    <Route exact path='/archivestep1user' element={< ArchiveStep1ByUser />}></Route>
 
 
                     <Route exact path='/' element={< Accueil />}></Route>
