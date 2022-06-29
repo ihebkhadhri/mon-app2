@@ -135,10 +135,12 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
     let idtemplate = this.state.idtemplate;
     let idIntegration = this.state.idintegration;
 
+    axios.get(`https://localhost:7103/Integration/incrementeetat/`+ this.state.idintegration) .then(res5 => {
+    
+
     var xhr = new XMLHttpRequest();
     xhr.open("GET", `https://localhost:7103/Integration/GetIntegration/` + this.state.idintegration);
-
-
+    
     xhr.onload = function () {
       if (this.status === 200) {
 
@@ -173,9 +175,11 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
 
       }
     };
+
+    
     xhr.send();
 
-
+  })
 
 
 

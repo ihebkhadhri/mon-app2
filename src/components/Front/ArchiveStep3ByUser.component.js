@@ -133,7 +133,7 @@ export default class ArchiveStep3ByUser extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://localhost:7103/Archive/AllArchivesStep2/`)
+        axios.get(`https://localhost:7103/Archive/AllArchivesStep3/`)
             .then(res => {
                 console.log(res.data);
                 this.setState({

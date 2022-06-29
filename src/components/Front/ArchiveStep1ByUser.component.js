@@ -51,8 +51,7 @@ export default class ArchiveStep1ByUser extends React.Component {
                         this.downloadinput(id);
                         break;
 
-                    default:
-                        swal("Got away safely!");
+                    
                 }
             });
     }
