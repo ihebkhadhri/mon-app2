@@ -72,6 +72,7 @@ export default class AdminControlSteps extends React.Component {
 
                             <thead>
                                 <tr>
+                                    <th>nom fichier</th>
                                     <th>username</th>
                                     <th> Catégorie</th>
                                     <th> Date de dépot</th>
@@ -83,6 +84,7 @@ export default class AdminControlSteps extends React.Component {
                                     this.state.integrations.map(
                                         integration => 
                                         <tr>
+                                            <td>{integration.fileName }</td>
                                             <td>{integration.userImport.username}</td>
                                              <td>{integration.categorie.libelle}  </td>   
                                              <td>{new Date(integration.created).toLocaleDateString()}  {new Date(integration.created).toLocaleTimeString()} </td>

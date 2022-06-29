@@ -18,6 +18,7 @@ export default class ArchiveStep2ByUser extends React.Component {
         this.downloadinput = this.downloadinput.bind(this);
         this.downloaRtf = this.downloaRtf.bind(this);
         this.suivant = this.suivant.bind(this);
+        this.precedent=this.precedent.bind(this);
 
     }
 
@@ -55,6 +56,10 @@ export default class ArchiveStep2ByUser extends React.Component {
                         swal("Got away safely!");
                 }
             });
+    }
+
+    precedent(idIntegration){
+        window.location.href = "/Templates/" + idIntegration;
     }
 
     suivant(idIntegration,idtemplate) {
@@ -181,13 +186,15 @@ export default class ArchiveStep2ByUser extends React.Component {
                             return (
                                 <tr>
 
-                                    <th>{item.id}.pdf</th>
+                                    <th>{item.fileName}.pdf</th>
                                     <th>{item.template.categorie.libelle}</th>
                                     <th>{item.userImport.username}</th>
                                     <th>{new Date(item.created).toLocaleDateString()}  {new Date(item.created).toLocaleTimeString()} </th>
 
                                     <th>
                                         <div className='d-flex justify-content-center col-12'>
+                                        <button title="précedent" className="btn btn-link" onClick={() => this.precedent(item.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "red" }}></i></button>
+
                                             <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word" style={{ color: "brown" }}></i></button>
                                             <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
