@@ -31,6 +31,10 @@ export default class Rapport_template extends React.Component {
 
   componentDidMount() {
 
+
+    let hrf = window.location.href.split("/");
+    let idi = hrf[hrf.length - 1];
+
     window.addEventListener("beforeunload", this.onUnload);
     $(".alert-Div").hide();
     $('#loaderr').hide();
@@ -40,6 +44,11 @@ export default class Rapport_template extends React.Component {
 
     let categorie_selected = sessionStorage.getItem("Categorie");
     
+
+axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
+      .then(res => {
+
+        categorie_selected=res.data.categorie.id;
 
 
     axios.get("https://localhost:7103/Template/AllTemplatesByCategorie/" + categorie_selected)
@@ -70,8 +79,7 @@ export default class Rapport_template extends React.Component {
 
 
 
-        let hrf = window.location.href.split("/");
-        let idi = hrf[hrf.length - 1];
+       
 
         this.setState({
           docs: _docs,
@@ -87,7 +95,7 @@ export default class Rapport_template extends React.Component {
       })
 
 
-
+    })
 
 
 

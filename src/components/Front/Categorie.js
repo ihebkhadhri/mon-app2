@@ -72,8 +72,7 @@ export default class Categorie extends React.Component {
     formData.append("file", this.state.filex);
     try {
       const res = axios.post("https://localhost:7103/Integration/AddIntegration/"+this.state.categorie_selected, formData).then(res => {
-        sessionStorage.setItem("Categorie", this.state.categorie_selected);
-        console.log(res.data);
+      
         window.location.href = "/Templates/" + res.data;
       });
     } catch (ex) {
