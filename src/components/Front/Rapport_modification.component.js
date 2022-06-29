@@ -3,7 +3,7 @@ import axios from 'axios';
 import DocViewer, { DocViewerRenderers } from "react-doc-viewer";
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './Rapport_modification.component.css';
+
 import { NavLink } from 'react-router-dom';
 
 var columns = document.querySelectorAll('.donnes');
@@ -23,7 +23,7 @@ export default class Rapport_modification extends React.Component {
     this.handleDragLeave = this.handleDragLeave.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
-
+    this.terminer = this.terminer.bind(this);
 
 
     if (sessionStorage.getItem("Token") == null) {
@@ -55,15 +55,6 @@ export default class Rapport_modification extends React.Component {
       idintegration: idi
 
     })
-
-
-
-
-
-
-
-
-
 
 
 
@@ -107,7 +98,12 @@ export default class Rapport_modification extends React.Component {
   }
 
 
-
+   terminer(){
+    axios.get(`https://localhost:7103/Integration/incrementeetat/`+ this.state.idintegration) .then(res5 => {
+      window.location.href="/ArchiveStep3ByUser";
+    })
+    
+   }
 
 
   handleDragStart(evt) {
@@ -264,7 +260,7 @@ export default class Rapport_modification extends React.Component {
           </div>
 
           <div className="col-7 mt-5">
-          <NavLink to={'/mesarchives'} className="btn btn-primary2" > Terminer </NavLink>
+          <button className="btn btn-primary2" onClick={this.terminer}> Terminer </button>
             <ul>
 
               <li > Mes Données </li>
