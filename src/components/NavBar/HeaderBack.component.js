@@ -21,6 +21,7 @@ import Validategroup from '../Back/Validategroup.component';
 import ListUser from "../../components/Back/ListUsers.component";
 import AdminControlSteps from "../../components/Back/AdminControlSteps";
 import ArchiveStep3Admin from "../../components/Back/ArchiveStep3Admin.component"
+import ArchiveStep2Admin from '../Back/ArchiveStep2Admin.component';
 export default class HeaderBack extends React.Component {
 
 
@@ -182,7 +183,7 @@ export default class HeaderBack extends React.Component {
 
 
                                                 <li className="">
-                                                    <NavLink to={'/'} >
+                                                    <NavLink to={'/AdminStep2'} >
 
                                                         <span className="pcoded-micon"><i className="feather icon-image"></i></span>
                                                         <span className="pcoded-mtext">Etape 2</span>
@@ -328,7 +329,8 @@ export default class HeaderBack extends React.Component {
                                                     <Route exact path='/AllArchives' element={< ArchiveAdmin />}></Route>
                                                     <Route exact path='/Corilusgroups' element={< Validategroup />}></Route>
 
-                                                    <Route exact path='/AdminStep1' element={< AdminControlSteps />}></Route>                                       
+                                                    <Route exact path='/AdminStep1' element={< AdminControlSteps />}></Route>   
+                                                    <Route exact path='/AdminStep2' element={< ArchiveStep2Admin />}></Route>                                      
                                                     <Route exact path='/AdminStep3' element={< ArchiveStep3Admin  />}></Route>
 
                                                 </Routes>
