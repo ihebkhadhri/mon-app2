@@ -181,7 +181,7 @@ export default class ArchiveStep2ByUser extends React.Component {
                             return (
                                 <tr>
 
-                                    <th>{item.id}.pdf</th>
+                                    <th>{item.fileName}.pdf</th>
                                     <th>{item.template.categorie.libelle}</th>
                                     <th>{item.userImport.username}</th>
                                     <th>{new Date(item.created).toLocaleDateString()}  {new Date(item.created).toLocaleTimeString()} </th>

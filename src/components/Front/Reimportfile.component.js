@@ -24,8 +24,12 @@ export default class Reimportfile extends React.Component {
 
   state = {
     categories: [],
-    
+    nompdf:"",
     categorie_selected: "",
+  }
+
+  nomrapport(event){
+    this.setState({ nompdf: event.target.value });
   }
 
   changeCategorie(event) {
@@ -51,7 +55,7 @@ export default class Reimportfile extends React.Component {
 
    
     try {
-      const res = axios.post("https://localhost:7103/Integration/AddIntegrationbyidxmlfile/"+sessionStorage.getItem("idinputfile")+"/"+this.state.categorie_selected).then(res => {
+      const res = axios.post("https://localhost:7103/Integration/AddIntegrationbyidxmlfile/"+sessionStorage.getItem("idinputfile")+"/"+this.state.categorie_selected+"/"+"/"+this.state.nompdf).then(res => {
        
         console.log(res.data);
         window.location.href = "/Templates/" + res.data;
@@ -101,6 +105,16 @@ export default class Reimportfile extends React.Component {
                 <div className="row g-3">
 
 
+                <div className="col-12">
+                    <div className="form-floating">
+
+
+                      <input className="form-control border-0" required type="text" onChange={this.nomrapport} />
+                      <label htmlFor="cage" >  Choisir Un nom de rapport </label>
+                    </div>
+                  </div>
+
+
 
                   
                   <div className="col-12">
@@ -113,6 +127,7 @@ export default class Reimportfile extends React.Component {
 
                     </div>
                   </div>
+                  
                   <div className="col-12">
 
                     <input type="button" className="btn btn-dark w-100 py-3" value="upload" onClick={this.importFile} />
