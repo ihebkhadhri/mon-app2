@@ -57,8 +57,8 @@ export default class ArchiveStep3ByUser extends React.Component {
             });
     }
 
-    precedent(idIntegration,idtemplate) {
-        axios.get(`https://localhost:7103/Integration/decrementetat/` + this.state.integration.id)
+    precedent(idIntegration) {
+        axios.get(`https://localhost:7103/Integration/decrementetat/` + idIntegration)
         .then(res => {           
            window.location.reload();
         })
@@ -195,7 +195,7 @@ export default class ArchiveStep3ByUser extends React.Component {
                                             <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
                                             <button title="Supprimer archive" className="btn btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
-                                            <button title="Retourner pour choisir un template" className="btn btn-link" onClick={() => this.precedent(item.id,item.template.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "green" }}></i></button>
+                                            <button title="Retourner pour choisir un template" className="btn btn-link" onClick={() => this.precedent(item.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "green" }}></i></button>
 
                                         </div>
                                     </th>
