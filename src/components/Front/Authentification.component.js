@@ -40,6 +40,8 @@ export default class Authentification extends React.Component {
   }
 
   onChangeUsername(e) {
+    document.getElementById('error').style.display = "none";
+    document.getElementById('error1').style.display = "none";
     this.setState({
       username: e.target.value
     })
@@ -47,12 +49,18 @@ export default class Authentification extends React.Component {
   }
 
   onChangePassword(e) {
+    document.getElementById('error').style.display = "none";
+    document.getElementById('error1').style.display = "none";
     this.setState({
       password: e.target.value
     })
   }
 
   onSubmit(e) {
+    document.getElementById('error').style.display = "none";
+    document.getElementById('error1').style.display = "none";
+
+    if(document.getElementById('login').value !="" && document.getElementById('password').value!="") {
 
     axios.get('https://localhost:7103/Token/GetUser/' + this.state.username + '/' + this.state.password)
       .then(res => {
@@ -61,15 +69,21 @@ export default class Authentification extends React.Component {
         sessionStorage.setItem("Token", res.data.jwttoken);
         sessionStorage.setItem("Role", res.data.role);
         sessionStorage.setItem("DisplayName", res.data.username);
+        sessionStorage.setItem("iduserconnected", res.data.userId);
         document.getElementById('error').style.display = "none";
         if (res.data.role == "Administrateur")
-          window.location.href = "/AllTemplate";
+          window.location.href = "/Dashboard";
         else
           window.location.href = "/Categories";
       })
       .catch((error) => {
         document.getElementById('error').style.display = "block";
-      })
+      }) }
+      else {
+        
+        document.getElementById('error1').style.display = "block";
+      }
+    
   }
 
 
@@ -106,6 +120,7 @@ export default class Authentification extends React.Component {
                    <span style={{ color : 'white' }}>Vous n'avez pas encore un compte? </span> <Link to={"/inscription"} className=" w-100 py-3" style={{ color:'#ff7a59' }}><b >S'inscrire</b> </Link>
                  
                   <p id='error' style={{ display: 'none', color: 'red' }}> Vérifier vos coordonnées</p>
+                  <p id='error1' style={{ display: 'none', color: 'red' }}> Veuillez remplier les champs!</p>
 
                 </div>
               </div>

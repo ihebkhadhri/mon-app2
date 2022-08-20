@@ -11,6 +11,8 @@ export default class AdminControlSteps extends React.Component {
         super(props);
         this.delete = this.delete.bind(this);
         this.downloadinput = this.downloadinput.bind(this);
+        this.ConfirmDelete = this.ConfirmDelete.bind(this);
+
     }
     state = {
         
@@ -34,10 +36,35 @@ export default class AdminControlSteps extends React.Component {
             )
     }
 
+    ConfirmDelete(id) {
+
+        swal({
+            title: "Confirmez-vous?",
+            text: "Voulez-vous vraiment supprimer cet archivage",
+            icon: "warning",
+            buttons: {
+                supprimer: "Supprimer",
+
+                Annuler: "Annuler",
+            },
+        })
+            .then((value) => {
+                if (value == "supprimer") {
+                    this.delete(id);
+                  
+                    swal("Archive supprimée avec succés");
+                }
+
+
+
+            });
+    }
+
+
     delete(id) {
-        axios.delete(`https://localhost:7103/Integration/DeleteIntegration/` + id)
+        axios.delete(`https://localhost:7103/Archive/Deletearchive/` + id)
             .then(res => {
-                window.location.reload();
+                this.setState({ integrations: this.state.integrations.filter(t => t.id !== id) });
 
             }
             )
@@ -91,7 +118,7 @@ export default class AdminControlSteps extends React.Component {
                                              <td>
                                              <div className='d-flex justify-content-center col-12'>
                                              <button style={{marginLeft: "10px"}} onClick={ () => this.downloadinput(integration.id)} className="btn btn-link"><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
-                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.delete(integration.id)} className="btn btn-link"><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                                                 <button style={{marginLeft: "10px"}} onClick={ () => this.ConfirmDelete(integration.id)} className="btn btn-link"><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
                                                  </div>
                                              </td>
                                         </tr>

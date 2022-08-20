@@ -49,6 +49,7 @@ export default class NavBarComponent extends React.Component {
                         <NavLink to={'/Contact'} className="nav-item nav-link"> Contacts </NavLink>
 
 
+                        {sessionStorage.getItem("Token") != null ?
                         <div className="nav-item dropdown">
                             <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Workflow</a>
                             <div className="dropdown-menu bg-light m-0">
@@ -62,11 +63,12 @@ export default class NavBarComponent extends React.Component {
 
                             </div>
                         </div>
+                        : <div> </div> }
 
                         {sessionStorage.getItem("Token") != null ?
-                            <NavLink to={'/profil'} className="nav-item nav-link"> Profil </NavLink>
+                            <NavLink to={'/ModifierProfil'} className="nav-item nav-link"> Profil </NavLink>
                             :
-                            <NavLink to={'/profil'} style={{ display:'none' }} className="nav-item nav-link"> Profil </NavLink>
+                            <NavLink to={'/ModifierProfil'} style={{ display:'none' }} className="nav-item nav-link"> Profil </NavLink>
                         }
 
 

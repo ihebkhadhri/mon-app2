@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import CategorieService from '../../services/CategorieService'
+import CategorieService from '../../services/CategorieService';
+import swal from 'sweetalert';
+
 export default class UpdateCategorie extends Component {
   constructor(props) {
     super(props);
@@ -23,109 +25,131 @@ export default class UpdateCategorie extends Component {
     
     this.getCategorie( sessionStorage.getItem("idcat"));
   }
+  
   onChangeLibelle(e) {
-    const libelle = e.target.value;
-    this.setState(function(prevState) {
-      return {
-        currentCategorie: {
-          ...prevState.currentCategorie,
-          libelle: libelle
-        }
-      };
+    this.setState({
+      libelle: e.target.value
     });
   }
   onChangeDescription(e) {
-    const description = e.target.value;
-    
-    this.setState(prevState => ({
-      currentCategorie: {
-        ...prevState.currentCategorie,
-        description: description
-      }
-    }));
+    this.setState({
+      description: e.target.value
+    });
   }
+
+
   getCategorie(id) {
     CategorieService.getCategorieById(id)
       .then(response => {
         this.setState({
-          currentCategorie: response.data
+          description: response.data.description,
+          libelle: response.data.libelle,
+          id:response.data.id
         });
         console.log(response.data);
       })
       .catch(e => {
         console.log(e);
       });
-  }
+  } 
 
   updateCategorie() {
-    console.log( this.state.currentCategorie.id)
+    
+    if (this.state.libelle == "") {
+      swal({
+
+        text: "Veuillez remplir le champ libelle",
+        icon: "warning"
+      }
+      );
+      return;
+    }
+
+    if (this.state.description == "") {
+      swal({
+
+        text: "Veuillez remplir le champ description",
+        icon: "warning"
+      }
+      );
+      return;
+    }
+
+    var categorie = {
+      libelle: this.state.libelle,
+      id: this.state.id,
+      description: this.state.description
+    };
+
     CategorieService.updateCategorie(
-      this.state.currentCategorie,
-      this.state.currentCategorie.id
+      categorie,
+      categorie.id
       
     )
       .then(response => {
-        console.log(response.data);
-        this.setState({
-          message: "The category was updated successfully!"
-        });
+        swal("Catégorie est modifiée avec succés")
+          .then((value) => {
+            window.location.href = "/categoriesAdmin";
+
+          });
       })
       .catch(e => {
-        console.log(e);
+        swal({
+
+          text: "Vérifier votre connexion",
+          icon: "warning"
+        }
+        );
       });
-      alert("Update successfully");
-      window.location.href = "/categoriesAdmin";
+     
+      
   }
  
   render() {
+    return (
 
-         const { currentCategorie } = this.state;
-      return (
-      <div>
-        {currentCategorie ? (
-          <div className="edit-form">
-            <h4>Categorie</h4>
-            <form>
-              <div className="form-group">
-                <label htmlFor="title">Libelle</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="title"
-                  value={currentCategorie.libelle}
-                  onChange={this.onChangeLibelle}
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="description"
-                  value={currentCategorie.description}
-                  onChange={this.onChangeDescription}
-                />
-              </div>
-             
-            </form>
-       
-            
-            <button
-              type="submit"
-              className="badge badge-success"
-              onClick={this.updateCategorie}
-            >
-              Update
+      <div className="submit-form">
+        <h2 className="text-center">Modifier catégorie</h2>
+        {this.state.submitted ? (
+          <div>
+            <h4>You submitted successfully!</h4>
+            <button className="btn btn-success" onClick={this.newCategorie}>
+              Add
             </button>
-            <p>{this.state.message}</p>
           </div>
         ) : (
           <div>
-            <br />
-            <p>Please click on Categorie...</p>
+            <div className="form-group">
+              <label htmlFor="title">Libelle</label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                required
+                value={this.state.libelle}
+                onChange={this.onChangeLibelle}
+                name="title"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                className="form-control"
+                id="description"
+                required
+                value={this.state.description}
+                onChange={this.onChangeDescription}
+                name="description"
+              />
+            </div>
+            <button onClick={this.updateCategorie} className="btn btn-success">
+              Valider
+            </button>
           </div>
         )}
       </div>
     );
   }
 }
+

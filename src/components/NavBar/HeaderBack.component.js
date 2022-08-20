@@ -22,6 +22,7 @@ import ListUser from "../../components/Back/ListUsers.component";
 import AdminControlSteps from "../../components/Back/AdminControlSteps";
 import ArchiveStep3Admin from "../../components/Back/ArchiveStep3Admin.component"
 import ArchiveStep2Admin from '../Back/ArchiveStep2Admin.component';
+import Dashboard from '../Back/Dashboard.component';
 export default class HeaderBack extends React.Component {
 
 
@@ -151,10 +152,10 @@ export default class HeaderBack extends React.Component {
                                     <div className="pcoded-navigatio-lavel">Navigation</div>
                                     <ul className="pcoded-item pcoded-left-item">
                                         <li className="">
-                                            <a href="">
+                                        <NavLink to={'/Dashboard'} >
                                                 <span className="pcoded-micon"><i className="feather icon-home"></i></span>
                                                 <span className="pcoded-mtext">Dashboard</span>
-                                            </a>
+                                        </NavLink>
 
                                         </li>
 
@@ -316,6 +317,8 @@ export default class HeaderBack extends React.Component {
                                                 </a>
 
                                                 <Routes>
+
+                                                <Route exact path='/Dashboard' element={< Dashboard />}></Route>
 
                                                     <Route exact path='/categoriesAdmin' element={< ListCategorie />}></Route>
 

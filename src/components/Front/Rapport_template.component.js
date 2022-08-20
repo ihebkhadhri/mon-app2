@@ -56,14 +56,11 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
 
 
         let listtemplate = (res.data);
-        console.log(listtemplate);
         let _docs = [];
         for (let i = 0; i < listtemplate.length; i++) {
 
           let _listemplateId = listtemplate[i].split("-*-")[0];
           let _listemplateUrlFile = listtemplate[i].split("-*-")[1];
-          console.log(_listemplateId);
-          console.log(_listemplateUrlFile);
 
           let _doc = [
             {
@@ -98,6 +95,7 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
     })
 
 
+    
 
 
   }
@@ -126,7 +124,7 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
       return;
     }
 
-
+    $(window).scrollTop(0);
     $('#loaderr').show();
 
     e.preventDefault();
@@ -213,12 +211,7 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
           {this.state.docs.map(doc =>
             <div className="col-12 col-lg-4  text-center">
               <DocViewer
-              theme={{
-                primary: "rgba(0,136,164,1)",
-               
-               
-                
-              }}
+              
                 className="docviewerrr "
                 id={'doc' + doc[0].id}
                 pluginRenderers={DocViewerRenderers}
@@ -239,12 +232,12 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
 
         </div>
 
-        <div class="d-flex justify-content-center col-12">
-
+        <div className="d-flex justify-content-center col-12">
+        
           <div className="" style={{ marginRight:"2%" }}>
             <button className="d-inline-flex align-items-center btn-primary3 btn btn-outline-primary border-2 p-2"  onClick={this.onprecedent}>
               <span className="flex-shrink-0 ">
-                <i class="fas fa-arrow-alt-circle-left"></i>
+                <i className="fas fa-arrow-alt-circle-left"></i>
               </span>
               <span className="px-3">Précédent</span>
             </button>
@@ -254,7 +247,7 @@ axios.get("https://localhost:7103/Integration/GetIntegration/" + idi)
           <div className="">
             <button className="d-inline-flex align-items-center btn-primary3 btn btn-outline-primary border-2 p-2"  onClick={this.onpasse}>
               <span className="flex-shrink-0 ">
-                <i class="fas fa-arrow-alt-circle-right"></i>
+                <i className="fas fa-arrow-alt-circle-right"></i>
               </span>
               <span className="px-3">Suivant</span>
             </button>

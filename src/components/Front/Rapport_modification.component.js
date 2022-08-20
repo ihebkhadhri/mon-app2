@@ -67,23 +67,23 @@ export default class Rapport_modification extends React.Component {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           var json_obj = JSON.parse(xhr.responseText);
-        
+
           status = true;
           this.setState({ integration: json_obj });
-           console.log(this.state.integration);
+          console.log(this.state.integration);
         } else {
           console.error(xhr.statusText);
         }
       }
     }.bind(this);
     xhr.onerror = function (e) {
-     
+
     };
     xhr.send(null);
 
     axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + idi)
       .then(res => {
-       
+
         this.setState({
           docs: [
             {
@@ -99,16 +99,16 @@ export default class Rapport_modification extends React.Component {
   }
 
 
-   terminer(){
-    axios.get(`https://localhost:7103/Integration/incrementeetat/`+ this.state.idintegration) .then(res5 => {
-      window.location.href="/ArchiveStep3ByUser";
+  terminer() {
+    axios.get(`https://localhost:7103/Integration/incrementeetat/` + this.state.idintegration).then(res5 => {
+      window.location.href = "/ArchiveStep3ByUser";
     })
-    
-   }
+
+  }
 
 
   handleDragStart(evt) {
-   
+
 
     dragSource = evt.target;
     evt.target.classList.add(draggingClass);
@@ -117,23 +117,23 @@ export default class Rapport_modification extends React.Component {
   }
 
   handleDragOver(evt) {
-   
+
     evt.dataTransfer.dropEffect = 'move';
     evt.preventDefault();
   }
 
   handleDragEnter(evt) {
-   
+
     evt.target.classList.add('over');
   }
 
   handleDragLeave(evt) {
-   
+
     evt.target.classList.remove('over');
   }
 
   handleDrop(evt) {
-   
+
     evt.stopPropagation();
 
     if (dragSource !== evt.target) {
@@ -148,87 +148,87 @@ export default class Rapport_modification extends React.Component {
       this.state.integration.dateNaissance = document.getElementById("dateNaissance").innerHTML;
       this.state.integration.nationalite = document.getElementById("nationalite").innerHTML;
 
-    
+
 
 
 
       let integrationobject = JSON.stringify(this.state.integration);
 
 
-      
 
-      
-      
-      
+
+
+
+
       var xhr = new XMLHttpRequest();
-          var json_obj, status = false;
-          xhr.open("PUT", 'https://localhost:7103/Integration/EcrireTemplate/' + sessionStorage.getItem("idtemplate"), integrationobject.toString(), false);
+      var json_obj, status = false;
+      xhr.open("PUT", 'https://localhost:7103/Integration/EcrireTemplate/' + sessionStorage.getItem("idtemplate"), integrationobject.toString(), false);
       xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.onload = function (e) {
-            if (xhr.readyState === 4) {
-              if (xhr.status === 200) {
-              
-      
-       axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + this.state.integration.id)
-                    .then(res => {
-                     
-                      this.setState({
-                        docs: [
-                          {
-                            uri: "data:application/pdf;base64, " + encodeURI(res.data)
-                          }
-                        ]
-      
-      
-      
-      
-                      })
-      
-      
-      
-                      columns = document.querySelectorAll('.donnes');
-                      console.log(columns);
-      
-      
-      
-      
-      
-                    })
-      
-      
-      
-      
-              } else {
-                console.error(xhr.statusText);
-              }
-            }
-          }.bind(this);
-          xhr.onerror = function (e) {
+      xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+
+
+            axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + this.state.integration.id)
+              .then(res => {
+
+                this.setState({
+                  docs: [
+                    {
+                      uri: "data:application/pdf;base64, " + encodeURI(res.data)
+                    }
+                  ]
+
+
+
+
+                })
+
+
+
+                columns = document.querySelectorAll('.donnes');
+                console.log(columns);
+
+
+
+
+
+              })
+
+
+
+
+          } else {
             console.error(xhr.statusText);
-          };
-          xhr.send(integrationobject);
-      
+          }
+        }
+      }.bind(this);
+      xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+      };
+      xhr.send(integrationobject);
+
     }
 
     evt.preventDefault();
   }
 
   handleDragEnd(evt) {
-   
+
     Array.prototype.forEach.call(columns, function (col) {
       ['over', 'dragging'].forEach(function (className) {
         col.classList.remove(className);
       });
     });
   }
-  onprecedent(e){
-  
-    axios.get(`https://localhost:7103/Integration/decrementetat/` + this.state.integration.id)
-    .then(res => {
-        
-        window.location.href = "/Templates/"+this.state.integration.id;
+  onprecedent(e) {
 
-    })
+    axios.get(`https://localhost:7103/Integration/decrementetat/` + this.state.integration.id)
+      .then(res => {
+
+        window.location.href = "/Templates/" + this.state.integration.id;
+
+      })
   }
 
 
@@ -266,7 +266,9 @@ export default class Rapport_modification extends React.Component {
           </div>
 
           <div className="col-7 mt-5">
-          <button className="btn btn-primary2" onClick={this.terminer}> Terminer </button>
+            {sessionStorage.getItem('Role') == "Particulier" ?
+              <button className="btn btn-primary2" onClick={this.terminer}> Terminer </button>
+              : <span></span>}
             <ul>
 
               <li > Mes Données </li>
@@ -284,7 +286,7 @@ export default class Rapport_modification extends React.Component {
               {
                 this.state.integration.titres != null ?
                   this.state.integration.titres.map((p) => <li >{p.libelle} <ul>
-                    {p.sous_titres.map((soustitre) => <li id="soustitre" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{soustitre.titres}</li>)}
+                    {p.sous_titres.map((soustitre) => <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{soustitre.libelle}</li>)}
                   </ul>
                   </li>
                   )
@@ -296,7 +298,7 @@ export default class Rapport_modification extends React.Component {
               {
                 this.state.integration.paragraphes != null ?
                   this.state.integration.paragraphes.map((p) => <li >{p.libelle} <ul>
-                    {p.sous_paragraphe.map((sousparagraphe) => <li id="sousparagraphe" onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{sousparagraphe.libelle}</li>)}
+                    {p.sous_paragraphe.map((sousparagraphe) => <li onDragStart={this.handleDragStart} onDragEnd={this.handleDragEnd} onDragOver={this.handleDragOver} onDragEnter={this.handleDragEnter} onDragLeave={this.handleDragLeave} onDrop={this.handleDrop} className='donnes' draggable="true" style={{ cursor: 'move' }}>{sousparagraphe.libelle}</li>)}
                   </ul>
                   </li>
                   )
@@ -320,24 +322,22 @@ export default class Rapport_modification extends React.Component {
                   null
               }
 
-              <li>
-             {/*  <CanvasSignature/> */}
-              </li>
+
             </ul>
-       
-  
-   
+
+
+
           </div>
           <div class="d-flex justify-content-center col-12">
 
-          <div className="" style={{ marginRight:"2%" }}>
-            <button className="d-inline-flex align-items-center btn-primary3 btn btn-outline-primary border-2 p-2"  onClick={this.onprecedent}>
-              <span className="flex-shrink-0 ">
-                <i class="fas fa-arrow-alt-circle-left"></i>
-              </span>
-              <span className="px-3">Précédent</span>
-            </button>
-          </div>
+            <div className="" style={{ marginRight: "2%" }}>
+              <button className="d-inline-flex align-items-center btn-primary3 btn btn-outline-primary border-2 p-2" onClick={this.onprecedent}>
+                <span className="flex-shrink-0 ">
+                  <i class="fas fa-arrow-alt-circle-left"></i>
+                </span>
+                <span className="px-3">Précédent</span>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -345,87 +345,3 @@ export default class Rapport_modification extends React.Component {
     );
   }
 }
-/* class CanvasSignature extends React.Component {
-  state = {trimmedDataURL: null}
-  sigPad = {}
-  clear = () => {
-    this.sigPad.clear()
-  }
-  
-  trim = () => {
-    console.log(this.sigPad.getTrimmedCanvas().toDataURL('image/png'))
-    this.setState({trimmedDataURL: this.sigPad.getTrimmedCanvas()
-      .toDataURL('image/png')})
-      
-      let theintegration=JSON.parse(sessionStorage.getItem("integration"));
-      console.log(this.state.trimmedDataURL);
-      theintegration.signature = this.sigPad.getTrimmedCanvas().toDataURL('image/png');
-      
-      let integrationobject = JSON.stringify(theintegration);
-      console.log(integrationobject);
-      var xhr = new XMLHttpRequest();
-      var json_obj, status = false;
-      xhr.open("PUT", 'https://localhost:7103/Integration/EcrireSignature/' + sessionStorage.getItem("idtemplate"), integrationobject.toString(),this.state.trimmedDataURL, false);
-  xhr.setRequestHeader("Content-Type", "application/json");
-      xhr.onload = function (e) {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-          
-  
-   axios.get(`https://localhost:7103/Integration/GetFinalPdf/` + sessionStorage.getItem("integration").id)
-                .then(res => {
-                  console.log(res.data);
-                  this.setState({
-                    docs: [
-                      {
-                        uri: "data:application/pdf;base64, " + encodeURI(res.data)
-                      }
-                    ]
-  
-  
-  
-  
-                  })
-  
-  
-  
-                  columns = document.querySelectorAll('.donnes');
-                  console.log(columns);
-  
-                })
-  
-  
-  
-  
-          } else {
-            console.error(xhr.statusText);
-          }
-        }
-      }.bind(this);
-      xhr.onerror = function (e) {
-        console.error(xhr.statusText);
-      };
-      xhr.send(integrationobject);
-  }
-  render () {
-    let {trimmedDataURL} = this.state
-    return <div className={styles.container}>
-      <div id="c" className={styles.sigContainer}>
-        <SignaturePad canvasProps={{className: styles.sigPad}}
-          ref={(ref) => { this.sigPad = ref }} />
-      </div>
-      <div>
-        <button className={styles.buttons} onClick={this.clear}>
-          Clear
-        </button>
-        <button className={styles.buttons} onClick={this.trim}>
-          Générer signature
-        </button>
-      </div>
-      {trimmedDataURL
-        ? <img id="i" className={styles.sigImage}
-          src={trimmedDataURL} />
-        : null}
-    </div>
-  } 
-}*/

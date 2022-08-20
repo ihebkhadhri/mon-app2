@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import swal from 'sweetalert';
 import CategorieService from '../../services/CategorieService'
 export default class AddCategorie extends Component {
-  
-    constructor(props) {
+
+  constructor(props) {
     super(props);
     this.onChangeLibelle = this.onChangeLibelle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
@@ -26,25 +27,44 @@ export default class AddCategorie extends Component {
     });
   }
   saveCategorie() {
+
+    if (this.state.libelle == "") {
+      swal({
+
+        text: "Veuillez remplir le champ libelle",
+        icon: "warning"
+      }
+      );
+      return;
+    }
+
+    if (this.state.description == "") {
+      swal({
+
+        text: "Veuillez remplir le champ description",
+        icon: "warning"
+      }
+      );
+      return;
+    }
+
     var categorie = {
       libelle: this.state.libelle,
       description: this.state.description
     };
     CategorieService.createCategorie(categorie)
       .then(response => {
-        this.setState({
-          id: response.categorie.id,
-          libelle: response.categorie.libelle,
-          description: response.categorie.description
-         
-        });
-        console.log(response.categorie);
+        swal("Catégorie ajoutée avec succés")
+          .then((value) => {
+            window.location.href = "/categoriesAdmin";
+
+          });
       })
       .catch(e => {
         console.log(e);
       });
-      alert("Categorie ajouter avec succées");
-      window.location.href = "/categoriesAdmin";
+
+
   }
   newCategorie() {
     this.setState({
@@ -53,10 +73,12 @@ export default class AddCategorie extends Component {
       description: ""
     });
   }
-  
+
   render() {
     return (
+
       <div className="submit-form">
+        <h2 className="text-center">Ajouter catégorie</h2>
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
@@ -91,7 +113,7 @@ export default class AddCategorie extends Component {
               />
             </div>
             <button onClick={this.saveCategorie} className="btn btn-success">
-              Submit
+              Ajouter
             </button>
           </div>
         )}
@@ -99,4 +121,4 @@ export default class AddCategorie extends Component {
     );
   }
 }
-    
+

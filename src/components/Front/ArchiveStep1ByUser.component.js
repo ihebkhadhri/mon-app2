@@ -14,6 +14,7 @@ export default class ArchiveStep1ByUser extends React.Component {
     constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
+        this.ConfirmDelete = this.ConfirmDelete.bind(this);
         this.JSalert = this.JSalert.bind(this);
         this.downloadinput = this.downloadinput.bind(this);
       
@@ -91,13 +92,35 @@ export default class ArchiveStep1ByUser extends React.Component {
     }
 
     
+    ConfirmDelete(id) {
 
+        swal({
+            title: "Confirmez-vous?",
+            text: "Voulez-vous vraiment supprimer cet archivage",
+            icon: "warning",
+            buttons: {
+                supprimer: "Supprimer",
+
+                Annuler: "Annuler",
+            },
+        })
+            .then((value) => {
+                if (value == "supprimer") {
+                    this.delete(id);
+                  
+                    swal("Archive supprimée avec succés");
+                }
+
+
+
+            });
+    }
 
 
     delete(id) {
         axios.delete(`https://localhost:7103/Archive/Deletearchive/` + id)
             .then(res => {
-                window.location.reload();
+                this.setState({ archives: this.state.archives.filter(t => t.id !== id) });
 
             }
             )
@@ -155,7 +178,7 @@ export default class ArchiveStep1ByUser extends React.Component {
                                         <div className='d-flex justify-content-center col-12'>
                                            
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
-                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.ConfirmDelete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
                                             <button title="Continuer l'archivage" className="btn btn-link" onClick={() => this.suivant(item.id)}><i className="fas fa-arrow-alt-circle-right" style={{ color: "green" }}></i></button>
 
                                         </div>

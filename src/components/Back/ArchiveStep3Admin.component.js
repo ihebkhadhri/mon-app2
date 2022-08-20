@@ -14,7 +14,8 @@ export default class ArchiveStep3Admin extends React.Component {
     constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
-       
+        this.ConfirmDelete = this.ConfirmDelete.bind(this);
+
         this.downloadinput = this.downloadinput.bind(this);
         this.downloaRtf = this.downloaRtf.bind(this);
         this.precedent= this.precedent.bind(this);
@@ -93,10 +94,35 @@ export default class ArchiveStep3Admin extends React.Component {
 
 
 
+    ConfirmDelete(id) {
+
+        swal({
+            title: "Confirmez-vous?",
+            text: "Voulez-vous vraiment supprimer cet archivage",
+            icon: "warning",
+            buttons: {
+                supprimer: "Supprimer",
+
+                Annuler: "Annuler",
+            },
+        })
+            .then((value) => {
+                if (value == "supprimer") {
+                    this.delete(id);
+                  
+                    swal("Archive supprimée avec succés");
+                }
+
+
+
+            });
+    }
+
+
     delete(id) {
         axios.delete(`https://localhost:7103/Archive/Deletearchive/` + id)
             .then(res => {
-                window.location.reload();
+                this.setState({ archives: this.state.archives.filter(t => t.id !== id) });
 
             }
             )
@@ -157,7 +183,7 @@ export default class ArchiveStep3Admin extends React.Component {
                                             <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word" style={{ color: "brown" }}></i></button>
                                             <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.downloadinput(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
-                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.ConfirmDelete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
                                             
                                         </div>
                                     </th>

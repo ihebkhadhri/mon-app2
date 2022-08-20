@@ -18,6 +18,7 @@ export default class ArchiveStep3ByUser extends React.Component {
         this.downloadinput = this.downloadinput.bind(this);
         this.downloaRtf = this.downloaRtf.bind(this);
         this.precedent = this.precedent.bind(this);
+        this.ConfirmDelete = this.ConfirmDelete.bind(this);
 
     }
 
@@ -126,10 +127,35 @@ export default class ArchiveStep3ByUser extends React.Component {
 
 
 
+    ConfirmDelete(id) {
+
+        swal({
+            title: "Confirmez-vous?",
+            text: "Voulez-vous vraiment supprimer cet archivage",
+            icon: "warning",
+            buttons: {
+                supprimer: "Supprimer",
+
+                Annuler: "Annuler",
+            },
+        })
+            .then((value) => {
+                if (value == "supprimer") {
+                    this.delete(id);
+                  
+                    swal("Archive supprimée avec succés");
+                }
+
+
+
+            });
+    }
+
+
     delete(id) {
         axios.delete(`https://localhost:7103/Archive/Deletearchive/` + id)
             .then(res => {
-                window.location.reload();
+                this.setState({ archives: this.state.archives.filter(t => t.id !== id) });
 
             }
             )
@@ -159,9 +185,9 @@ export default class ArchiveStep3ByUser extends React.Component {
 
                 <h4 className='titre '>Mes Archives Step 3</h4>
                 <div className='row' style={{ display: 'inline-block', marginBottom: '20px', marginLeft: '1%' }}>
-                    <span> <Link to={"/archivestep2user"} style={{ display: 'inline-block', color: 'rgba(0,136,164,1)' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
+                    <span> <Link to={"/ArchiveStep3ByUser"} style={{ display: 'inline-block', color: 'rgba(0,136,164,1)' }} title="Vue table" ><i className="fas fa-table"></i></Link> </span>
                     <span> | </span>
-                    <span> <Link to={"/archivestep2pdfuser"} style={{ display: 'inline-block' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
+                    <span> <Link to={"/archivestep3pdfuser"} style={{ display: 'inline-block' }} title="Consulter Vos archives. Vous pouvez faire une recherche de contenu" ><i className="fas fa-eye"></i></Link> </span>
 
 
                 </div>
@@ -194,7 +220,7 @@ export default class ArchiveStep3ByUser extends React.Component {
                                             <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word" style={{ color: "brown" }}></i></button>
                                             <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.JSalert(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
-                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.ConfirmDelete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
                                             <button title="Retourner pour choisir un template" className="btn btn-link" onClick={() => this.precedent(item.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "green" }}></i></button>
 
                                         </div>

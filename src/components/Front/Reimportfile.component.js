@@ -10,6 +10,7 @@ export default class Reimportfile extends React.Component {
     
     this.importFile = this.importFile.bind(this);
     this.changeCategorie = this.changeCategorie.bind(this);
+    this.nomrapport = this.nomrapport.bind(this);
 
 
 
@@ -55,7 +56,8 @@ export default class Reimportfile extends React.Component {
 
    
     try {
-      const res = axios.post("https://localhost:7103/Integration/AddIntegrationbyidxmlfile/"+sessionStorage.getItem("idinputfile")+"/"+this.state.categorie_selected+"/"+"/"+this.state.nompdf).then(res => {
+      console.log("salutt");
+      const res = axios.post("https://localhost:7103/Integration/AddIntegrationbyidxmlfile/"+sessionStorage.getItem("idinputfile")+"/"+this.state.categorie_selected+"/"+this.state.nompdf).then(res => {
        
         console.log(res.data);
         window.location.href = "/Templates/" + res.data;

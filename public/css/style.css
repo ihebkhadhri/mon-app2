@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: rgba(0,136,164,1);
+    --primary: rgba(0, 136, 164, 1);
     --secondary: #757575;
     --light: #F3F6F8;
     --dark: #0C2B4B;
@@ -112,7 +112,7 @@
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav .nav-link  {
+    .navbar .navbar-nav .nav-link {
         margin-right: 0;
         padding: 10px 0;
     }
@@ -174,7 +174,7 @@
         position: relative;
         min-height: 450px;
     }
-    
+
     #header-carousel .carousel-item img {
         position: absolute;
         width: 100%;
@@ -350,33 +350,54 @@
     color: var(--light);
 }
 
- 
-.text-primary2{
- color: rgba(0,136,164,1) !important;   
+
+.text-primary2 {
+    color: rgba(0, 136, 164, 1) !important;
 }
 
-.btn-primary2{
+.btn-primary2 {
     color: white !important;
-    background-color: rgba(0,136,164,1) !important;
-    border-color: rgba(0,136,164,1) !important;
+    background-color: rgba(0, 136, 164, 1) !important;
+    border-color: rgba(0, 136, 164, 1) !important;
 }
 
-.bg-primary2{
-    background-color: rgba(0,136,164,1) !important;   
+.bg-primary2 {
+    background-color: rgba(0, 136, 164, 1) !important;
 }
 
-.titre{
+.titre {
     text-align: center;
     font-family: "Tahoma ";
 }
 
-.progress-bar-striped{
-    background-color: rgba(0,136,164,1); 
+.progress-bar-striped {
+    background-color: rgba(0, 136, 164, 1);
 }
 
-.btn-primary3{
+.btn-primary3 {
     color: white !important;
-    background-color: rgba(87,193,165,1) !important;
-    border-color: rgba(87,193,165,1) !important;
+    background-color: rgba(87, 193, 165, 1) !important;
+    border-color: rgba(87, 193, 165, 1) !important;
 }
 
+.champs-modifier-profil {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 992px) {
+    .imageprofilupdate {
+        margin-top: 8%;
+       
+       
+    }
+}
+
+@media (min-width: 768px ) and (max-width: 991px ) {
+    .imageprofilupdate {
+        margin-top: 24%;
+       
+        
+
+    }
+}

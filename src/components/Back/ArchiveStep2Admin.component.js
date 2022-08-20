@@ -14,11 +14,14 @@ export default class ArchiveStep2Admin extends React.Component {
     constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
-       
+
         this.downloadinput = this.downloadinput.bind(this);
         this.downloaRtf = this.downloaRtf.bind(this);
         this.precedent = this.precedent.bind(this);
-       
+        this.confirmer = this.confirmer.bind(this);
+        this.ConfirmDelete = this.ConfirmDelete.bind(this);
+
+
 
     }
 
@@ -26,12 +29,12 @@ export default class ArchiveStep2Admin extends React.Component {
         archives: []
     }
 
-   
-
-   
 
 
-   
+
+
+
+
 
     downloadinput(id) {
         axios.get(`https://localhost:7103/Archive/Downloadinput/` + id)
@@ -83,10 +86,35 @@ export default class ArchiveStep2Admin extends React.Component {
 
 
 
+    ConfirmDelete(id) {
+
+        swal({
+            title: "Confirmez-vous?",
+            text: "Voulez-vous vraiment supprimer cet archivage",
+            icon: "warning",
+            buttons: {
+                supprimer: "Supprimer",
+
+                Annuler: "Annuler",
+            },
+        })
+            .then((value) => {
+                if (value == "supprimer") {
+                    this.delete(id);
+                  
+                    swal("Archive supprimée avec succés");
+                }
+
+
+
+            });
+    }
+
+
     delete(id) {
         axios.delete(`https://localhost:7103/Archive/Deletearchive/` + id)
             .then(res => {
-                window.location.reload();
+                this.setState({ archives: this.state.archives.filter(t => t.id !== id) });
 
             }
             )
@@ -99,9 +127,11 @@ export default class ArchiveStep2Admin extends React.Component {
                 this.setState({
                     archives: res.data,
 
-                }); $('#dt').DataTable({ "pagingType": "full_numbers", "language": {
-                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
-                }  });
+                }); $('#dt').DataTable({
+                    "pagingType": "full_numbers", "language": {
+                        "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                    }
+                });
                 $('.dataTables_length').addClass('bs-select');
 
             }
@@ -110,20 +140,27 @@ export default class ArchiveStep2Admin extends React.Component {
 
     }
 
-    precedent(idIntegration){
-        axios.get(`https://localhost:7103/Integration/decrementetat/`+ idIntegration) .then(res5 => {
-    
-        window.location.reload();
+    precedent(idIntegration) {
+        axios.get(`https://localhost:7103/Integration/decrementetat/` + idIntegration).then(res5 => {
 
-    })
-}
+            window.location.reload();
+
+        })
+    }
+
+    confirmer(idIntegration) {
+        axios.get(`https://localhost:7103/Integration/incrementeetat/` + idIntegration).then(res5 => {
+            window.location.reload();
+        })
+
+    }
 
     render() {
         return (
             <div className="archives">
 
                 <h2 > Archives Step 2</h2>
-                
+
                 <table id="dt" className="table   table-striped table-bordered table-sm" cellSpacing="0" width="100%" >
 
                     <thead>
@@ -150,12 +187,12 @@ export default class ArchiveStep2Admin extends React.Component {
 
                                     <th>
                                         <div className='d-flex justify-content-center col-12'>
-                                        <button title="précedent" className="btn btn-link" onClick={() => this.precedent(item.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "red" }}></i></button>
+                                            <button title="précedent" className="btn btn-link" onClick={() => this.precedent(item.id)}><i className="fas fa-arrow-alt-circle-left" style={{ color: "red" }}></i></button>
                                             <button title="Download Word version" className="btn btn-link" onClick={() => this.downloaRtf(item.id)}><i class="far fa-file-word" style={{ color: "brown" }}></i></button>
                                             <button title="Download Pdf version" className="btn btn-link" onClick={() => this.download(item.id)}><i class="fas fa-file-pdf" style={{ color: "orangered" }}></i></button>
                                             <button title="Extraire data" className="btn btn-link" onClick={() => this.downloadinput(item.id)}><i className="fas fa-file-import" style={{ color: "purple" }}></i></button>
-                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.delete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
-                                            
+                                            <button title="Supprimer archive" className="btn btn-link" onClick={() => this.ConfirmDelete(item.id)}><i className="fas fa-trash-alt" style={{ color: "red" }}></i></button>
+                                            <button title="Confirmer l'archive" className="btn btn-link" onClick={() => this.confirmer(item.id)}><i className="fas fa-check-square" style={{ color: "green" }}></i></button>
                                         </div>
                                     </th>
                                 </tr>

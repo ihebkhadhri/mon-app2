@@ -19,6 +19,9 @@ class UserService {
     deleteUser(userId){
         return axios.delete("https://localhost:7103/Token/DeleteUser"+ '/' + userId);
     }
+    updateUser(user){
+        return axios.put("https://localhost:7103/Token/UpdateUser", user,{headers:headers});
+    }
 
 }
 
